@@ -1,0 +1,118 @@
+<extend name="Public:layout" />
+<block name="content">
+  <div class="page__hd">
+    <h1 class="page__title">{$room.roomname}</h1>
+    <p class="page__desc">
+      学习，使我快乐
+    </p>
+  </div>
+  <div class="page__bd">
+    <div class="weui-panel weui-panel_access">
+      <div class="weui-panel__hd">房间信息</div>
+      <div class="weui-cell weui-cell_access">
+        <div class="weui-cell__bd">房主</div>
+        <div class="weui-cell__ft" style="font-size: 0">
+          <span style="vertical-align:middle; font-size: 17px;">{$roomown.username}</span>
+        </div>
+      </div>
+      <div class="weui-cell weui-cell_access">
+        <div class="weui-cell__bd">活动地点</div>
+        <div class="weui-cell__ft" style="font-size: 0">
+          <span style="vertical-align:middle; font-size: 17px;">图书馆{$room.placde}楼</span>
+        </div>
+      </div>
+      <div class="weui-cell weui-cell_access">
+        <div class="weui-cell__bd">活动开始时间：</div>
+        <div class="weui-cell__ft" style="font-size: 0">
+          <span style="vertical-align:middle; font-size: 17px;">{$room.starttime}</span>
+        </div>
+      </div>
+      <div class="weui-cell weui-cell_access">
+        <div class="weui-cell__bd">活动结束时间：</div>
+        <div class="weui-cell__ft" style="font-size: 0">
+          <span style="vertical-align:middle; font-size: 17px;">{$room.endtime}</span>
+        </div>
+      </div>
+      <a class="weui-btn weui-btn_mini weui-btn_primary bt1" href="javascript:" style="display: none" >隐藏</a>
+      <div class="weui-cell weui-cell_access">
+        <div class="weui-cell__bd">活动地图：</div>
+        <a class="weui-btn weui-btn_mini weui-btn_primary bt2" href="javascript:" >显示</a>
+
+        <div id="zoom-marker-div" class="zoom-marker-div" style="display: none" >
+          <img class="zoom-marker-img" id="zoom-marker-img" alt="..." name="viewArea" draggable="false" />
+
+        </div>
+      </div>
+    </div>
+    <div class="weui-panel weui-panel_access">
+
+     <div class="weui-cell__bd">参与人员：</div>
+      <volist name="list" id="pe">
+        <div class="weui-media-box ">
+          <div class="weui-media-box__hd">
+            <img class="weui-media-box__thumb" src="" alt="">
+          </div>
+          <div class="weui-media-box__bd">
+            <h4 class="weui-media-box__title">{$pe.des}</h4>
+          </div>
+        </div>
+      </volist>
+    </div>
+  
+          <div class="weui-flex">
+            <div class="weui-flex__item weui-btn weui-btn_plain-primary"><a href="javascript:">加入活动</a></div>
+           
+          </div>
+        
+  </div>
+</block>
+<block name="script">
+<script src="/Public/Home/js/jquery-1.11.3.min.js"></script>
+<script src="/Public/Home/js/jquery.mousewheel.min.js"></script>
+<script src="/Public/Home/js/require/iscroll.js"></script>
+<script src="/Public/Home/js/datePicker.js"></script>
+<script src="/Public/Home/js/hammer.min.js"></script>
+<script src="/Public/Home/js/zoom-marker.js"></script>
+<script type="text/javascript">
+
+$(".bt2").click(function(event) {
+  $('.zoom-marker-div').attr('style', ' ');
+  $(".bt2").attr('style', 'display: none');
+  $(".bt1").attr('style', ' ');
+});
+$('.bt1').click(function(event) {
+  $(".zoom-marker-div").attr('style', 'display: none');
+  $(".bt1").attr('style', 'display: none');
+  $(".bt2").attr('style', ' ');
+});
+
+  $(document).ready(function () {
+
+
+    $('#zoom-marker-img').zoomMarker({
+        src: "/Public/Home/img/yue/1.png",
+        rate: 0.2,
+        width: 200,
+        max: 600,
+        markers:[
+            {src:"/Public/Home/img/yue/marker.svg", x:{$room['x']}, y:{$room['y']}}
+            ]
+
+
+      });
+    if({$room.place}==2){
+$('#zoom-marker-img').zoomMarker_LoadImage("/Public/Home/img/yue/2.png");
+    }
+    if({$room.place}==3){
+$('#zoom-marker-img').zoomMarker_LoadImage("/Public/Home/img/yue/3.png");
+    }
+    if({$room.place}==4){
+$('#zoom-marker-img').zoomMarker_LoadImage("/Public/Home/img/yue/4.png");
+    }
+
+
+  });
+
+
+</script>
+</block>

@@ -1,0 +1,169 @@
+<!doctype html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <meta name="description" content="上财信院校友平台管理系统">
+    <meta name="keywords" content="上财信院校友平台管理系统">
+    <title>上财信院校友平台管理系统</title>
+    <!-- =============== VENDOR STYLES ===============-->
+    <!-- FONT AWESOME-->
+    <load href="__PUBLIC__/Admin/vendor/fontawesome/css/font-awesome.min.css" />
+    <!-- SIMPLE LINE ICONS-->
+    <load href="__PUBLIC__/Admin/vendor/simple-line-icons/css/simple-line-icons.css" />
+    <!-- ANIMATE.CSS-->
+    <load href="__PUBLIC__/Admin/vendor/animate.css/animate.min.css" />
+    <!-- WHIRL (spinners)-->
+    <load href="__PUBLIC__/Admin/vendor/whirl/dist/whirl.css" />
+    <!-- =============== PAGE VENDOR STYLES ===============-->
+    <block name="vendor-style"></block>
+    <!-- =============== BOOTSTRAP STYLES ===============-->
+    <load href="__PUBLIC__/Admin/css/bootstrap.css" id="bscss" />
+    <!-- =============== APP STYLES ===============-->
+    <load href="__PUBLIC__/Admin/css/app.css" id="maincss" />
+</head>
+
+<body>
+    <div class="wrapper">
+        <!-- top navbar-->
+        <header class="topnavbar-wrapper">
+            <!-- START Top Navbar-->
+            <nav role="navigation" class="navbar topnavbar">
+                <!-- START navbar header-->
+                <div class="navbar-header">
+                    <h3 style='color:white '>校友信息管理系统</h3>
+                </div>
+                <!-- END navbar header-->
+                <!-- START Nav wrapper-->
+                <div class="nav-wrapper">
+                    <!-- START Left navbar-->
+                    <ul class="nav navbar-nav">
+                        <li>
+                            <!-- Button used to collapse the left sidebar. Only visible on tablet and desktops-->
+                            <a href="#" data-toggle-state="aside-collapsed" class="hidden-xs">
+                                <em class="fa fa-navicon"></em>
+                            </a>
+                            <!-- Button to show/hide the sidebar on mobile. Visible on mobile only.-->
+                            <a href="#" data-toggle-state="aside-toggled" data-no-persist="true" class="visible-xs sidebar-toggle">
+                                <em class="fa fa-navicon"></em>
+                            </a>
+                        </li>
+                        <!-- START User avatar toggle-->
+                        <li>
+                            <!-- Button used to collapse the left sidebar. Only visible on tablet and desktops-->
+                            <a id="user-block-toggle" href="#user-block" data-toggle="collapse">
+                                <em class="icon-user"></em>
+                            </a>
+                        </li>
+                        <!-- END User avatar toggle-->
+                    </ul>
+                    <!-- END Left navbar-->
+                    <!-- START Right Navbar-->
+                    <ul class="nav navbar-nav navbar-right">
+                        <!-- Search icon-->
+                        <li>
+                            <a href="/admin/account/doLogout">
+                                退出 <i class="fa fa-sign-out"></i>
+                            </a>
+                        </li>
+                    </ul>
+                    <!-- END Right Navbar-->
+                </div>
+                <!-- END Nav wrapper-->
+            </nav>
+            <!-- END Top Navbar-->
+        </header>
+        <!-- sidebar-->
+        <aside class="aside">
+            <!-- START Sidebar (left)-->
+            <div class="aside-inner">
+                <nav data-sidebar-anyclick-close="" class="sidebar">
+                    <!-- START sidebar nav-->
+                    <ul class="nav">
+                        <!-- Iterates over all sidebar items-->
+                        <li class="has-user-block">
+                            <div id="user-block" class="collapse" aria-expanded="true">
+                                <div class="item user-block">
+                                    <!-- User picture-->
+                                    <div class="user-block-picture">
+                                        <div class="user-block-status">
+                                            <img src="__PUBLIC__/Admin/img/guojiao-logo.jpg" alt="Avatar" width="50" height="50" class="img-thumbnail img-circle">
+                                            <div class="circle circle-success circle-lg"></div>
+                                        </div>
+                                    </div>
+                                    <!-- Name and Job-->
+                                    <div class="user-block-info">
+                                        <span class="user-block-name">你好, 管理员</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </li>
+                        <li <?php echo $active_menu=='candidate' ? 'class="active"': ''?>>
+                            <a href="/admin/candidate/index" title="用户详情">
+                                <em class="icon-notebook"></em>
+                                <span>用户详情</span>
+                            </a>
+                        </li>
+                        <li <?php echo $active_menu=='user' ? 'class="active"': ''?>>
+                            <a href="#usermenu" title="账户管理" data-toggle="collapse">
+                                <em class="icon-user"></em>
+                                <span>账户管理</span>
+                            </a>
+                            <ul id="usermenu" class="nav sidebar-subnav collapse">
+                                <li class="sidebar-subnav-header">账户管理</li>
+                                <li <?php echo $active_menu=='user' ? 'class="active"': ''?>>
+                                    <a href="/admin/user/changePassword" title="修改密码">
+                                        <em class="icon-lock"></em>
+                                        <span>修改密码</span>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="/admin/account/doLogout" title="退出系统">
+                                        <em class="icon-logout"></em>
+                                        <span>退出系统</span>
+                                    </a>
+                                </li>
+                            </ul>
+                        </li>
+                    </ul>
+                    <!-- END sidebar nav-->
+                </nav>
+            </div>
+            <!-- END Sidebar (left)-->
+        </aside>
+        <!-- offsidebar-->
+        <!-- Main section-->
+        <section>
+            <!-- Page content-->
+            <div class="content-wrapper">
+                <div class="content-heading">
+                    <block name="title"></block>
+                </div>
+                <block name="content"></block>
+            </div>
+        </section>
+        <!-- Page footer-->
+        <footer>
+            <span>&copy; 2018 新机智能保险管理系统 </span>
+        </footer>
+    </div>
+    <!-- =============== VENDOR SCRIPTS ===============-->
+    <!-- MODERNIZR-->
+    <script src="__PUBLIC__/Admin/vendor/modernizr/modernizr.custom.js"></script>
+    <!-- JQUERY-->
+    <script src="__PUBLIC__/Admin/vendor/jquery/dist/jquery.js"></script>
+    <!-- BOOTSTRAP-->
+    <script src="__PUBLIC__/Admin/vendor/bootstrap/dist/js/bootstrap.js"></script>
+    <!-- STORAGE API-->
+    <script src="__PUBLIC__/Admin/vendor/jQuery-Storage-API/jquery.storageapi.js"></script>
+    <!-- PARSLEY-->
+    <script src="__PUBLIC__/Admin/vendor/parsleyjs/dist/parsley.min.js"></script>
+    <!-- =============== PAGE VENDOR SCRIPTS ===============-->
+    <block name="vendor-script"></block>
+    <!-- =============== APP SCRIPTS ===============-->
+    <script src="__PUBLIC__/Admin/js/app.js"></script>
+    <block name="script"></block>
+</body>
+
+</html>

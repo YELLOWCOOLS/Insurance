@@ -1,0 +1,108 @@
+<extend name="Public:layout" />
+
+<block name="content">
+		<div class="page__hd">
+        <h1 class="page__title">订单详情</h1>
+    <div class="weui-cell weui-cell_access">
+                <div class="weui-cell__bd">
+                    <span style="vertical-align: middle">发起人</span>
+               
+                </div>
+                <div class="weui-cell__ft">
+                {$record.initiatorid}
+                </div>
+     </div>
+       
+    </div>
+    <div class="page_bd">
+    <div class="weui-cells__title">快递信息</div>
+      <div class="weui-cell weui-cell_access">
+                <div class="weui-cell__bd">
+                    <span style="vertical-align: middle">状态</span>
+         
+                </div>
+                <div class="weui-cell__ft">
+                   <if condition="$record.state eq 0">
+                      未接单
+                     
+                   </if>
+                   <if condition="$record.state eq 1">
+                   正在途中
+                   </if>
+                   <if condition="$record.state eq 2">
+                  已完成
+                   </if>
+                    <if condition="$record.state eq 3">
+                  等待您的领取
+                   </if>
+                   
+
+                </div>
+      </div>
+      <if condition="$record.state eq 3">
+                  <div class="weui-cell weui-cell_access">
+                <div class="weui-cell__bd">
+                    <span style="vertical-align: middle">领取地点</span>
+                   
+                </div>
+                <div class="weui-cell__ft">
+                   {$user.place}
+                </div>
+      </div>
+      </if>
+      <div class="weui-cell weui-cell_access">
+                <div class="weui-cell__bd">
+                    <span style="vertical-align: middle">订单号</span>
+                   
+                </div>
+                <div class="weui-cell__ft">
+                   {$record.recordid}
+                </div>
+      </div>
+      <div class="weui-cell weui-cell_access">
+                <div class="weui-cell__bd">
+                    <span style="vertical-align: middle">交货地址</span>
+               
+                </div>
+                <div class="weui-cell__ft">
+                   {$record.place}
+                </div>
+      </div>
+       <div class="weui-cell weui-cell_access">
+                <div class="weui-cell__bd">
+                    <span style="vertical-align: middle">发起时间</span>
+     
+                </div>
+                <div class="weui-cell__ft">
+                   {$record.time}
+                </div>
+      </div>
+    <div class="weui-cells__title">接件人信息</div>
+   <div class="weui-cell weui-cell_access">
+                <div class="weui-cell__bd">
+                    <span style="vertical-align: middle">姓名</span>
+                   
+                </div>
+                <div class="weui-cell__ft">
+                   {$user.name}
+                </div>
+      </div>
+      <div class="weui-cell weui-cell_access">
+                <div class="weui-cell__bd">
+                    <span style="vertical-align: middle">电话</span>
+                   
+                </div>
+                <div class="weui-cell__ft">
+                   {$user.phone}
+                </div>
+      </div>
+    </div>
+</block>
+
+
+<block name="script">
+    <script src="http://res.wx.qq.com/open/js/jweixin-1.2.0.js" type="text/javascript"></script>
+    <script type="text/javascript">
+ 
+    </script>
+</block>

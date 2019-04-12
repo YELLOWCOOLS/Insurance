@@ -1,0 +1,1095 @@
+html {
+  font-family: sans-serif;
+  -webkit-user-select: none;
+  user-select: none;
+  -webkit-text-size-adjust: 100%;
+  -ms-text-size-adjust: 100%; }
+
+* {
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box;
+  -webkit-tap-highlight-color: transparent; }
+
+html,
+body {
+  width: 100%;
+  height: 100%; }
+
+body {
+  position: relative;
+  width: 16rem;
+  margin: 0 auto; }
+
+.loading-wrapper {
+  position: fixed;
+  width: 100%;
+  height: 100%;
+  background-color: #ece6d9;
+  z-index: 999; }
+  .loading-wrapper .loader {
+    position: absolute;
+    width: 100%;
+    height: 10.66667rem;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    margin: auto; }
+  .loading-wrapper img {
+    display: block;
+    margin: 0 auto;
+    border-radius: 50%; }
+
+.ldBar > .ldBar-label {
+  text-align: center;
+  font-size: 0.64rem;
+  color: #bea889; }
+
+.swiper-container {
+  width: 100%;
+  height: 100%; }
+
+.swiper-slide {
+  text-align: center;
+  font-size: 18px;
+  background: #fff;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: -webkit-flex;
+  display: flex;
+  -webkit-box-pack: center;
+  -ms-flex-pack: center;
+  -webkit-justify-content: center;
+  justify-content: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  -webkit-align-items: center;
+  align-items: center; }
+  .swiper-slide .slide {
+    width: 100%;
+    height: 100%;
+    background-size: cover; }
+
+.slide-01 {
+  background: url(./img/01/bg.jpg) no-repeat; }
+
+.slide-02 {
+  background: url(./img/02/bg.jpg) no-repeat; }
+
+.slide-03 {
+  background: url(./img/03/bg.jpg) no-repeat; }
+
+.slide-04 {
+  background: url(./img/04/bg.jpg) no-repeat; }
+
+.slide-05 {
+  background: url(./img/05/bg.jpg) no-repeat; }
+
+.slide-06 {
+  background: url(./img/06/bg.jpg) no-repeat; }
+
+.slide-07 {
+  background: url(./img/07/bg.jpg) no-repeat; }
+
+.slide-08 {
+  background: url(./img/08/bg.jpg) no-repeat; }
+
+.slide-09 {
+  background: url(./img/09/bg.jpg) no-repeat; }
+
+.slide-10 {
+  background: url(./img/10/bg.jpg) no-repeat; }
+
+.slide-11 {
+  background: url(./img/11/bg.jpg) no-repeat; }
+
+.slide-12 {
+  background: url(./img/12/bg.jpg) no-repeat; }
+
+.slide-13 {
+  background: url(./img/13/bg.jpg) no-repeat; }
+
+.slide-14 {
+  background: url(./img/14/bg.jpg) no-repeat; }
+
+.slide-15 {
+  background: url(./img/15/bg.jpg) no-repeat; }
+
+#slide-01-title {
+  position: absolute;
+  top: 2.47467rem;
+  left: 2.66667rem;
+  width: 10.70933rem;
+  height: 7.12533rem;
+  background: url("./img/01/title@2x.png") no-repeat;
+  background-size: cover; }
+
+#slide-01-schoolgate {
+  position: absolute;
+  top: 9.64267rem;
+  left: 0;
+  width: 16rem;
+  height: 18.38933rem;
+  background: url("./img/01/schoolgate@2x.png") no-repeat;
+  background-size: cover; }
+
+#slide-01-footer {
+  position: absolute;
+  bottom: 0.704rem;
+  left: 0;
+  width: 16rem;
+  height: 0.512rem;
+  background: url("./img/01/footer@2x.png") no-repeat;
+  background-size: cover; }
+
+#slide-02-flag {
+  position: absolute;
+  top: 1.70667rem;
+  left: 1.49333rem;
+  width: 4.18133rem;
+  height: 2.112rem;
+  background: url("./img/02/flag@2x.png") no-repeat;
+  background-size: cover; }
+
+#slide-02-title {
+  position: absolute;
+  top: 4.65067rem;
+  left: 50%;
+  margin-left: -6.21867rem;
+  width: 12.43733rem;
+  height: 4.94933rem;
+  background: url("./img/02/title@2x.png") no-repeat;
+  background-size: cover; }
+
+#slide-02-subtitle {
+  position: absolute;
+  top: 10.88rem;
+  left: 50%;
+  margin-left: -4.58667rem;
+  width: 9.17333rem;
+  height: 2.21867rem;
+  background: url("./img/02/subtitle@2x.png") no-repeat;
+  background-size: cover; }
+
+#slide-02-bike {
+  position: absolute;
+  left: 0;
+  top: 10.83733rem;
+  width: 9.25867rem;
+  height: 8.91733rem;
+  background: url("./img/02/bike@2x.png") no-repeat;
+  background-size: cover; }
+
+#slide-02-tv {
+  position: absolute;
+  top: 15.46667rem;
+  left: 50%;
+  margin-left: -7.01867rem;
+  width: 14.03733rem;
+  height: 10.048rem;
+  background: url("./img/02/tv@2x.png") no-repeat;
+  background-size: cover; }
+
+#slide-03-film {
+  position: absolute;
+  top: 1.06667rem;
+  left: 0;
+  width: 16rem;
+  height: 4.97067rem;
+  background: url("./img/03/film@2x.png") no-repeat;
+  background-size: cover; }
+
+#slide-03-photo {
+  position: absolute;
+  top: 6.35733rem;
+  left: 1.408rem;
+  width: 6.848rem;
+  height: 4.88533rem;
+  background: url("./img/03/photo@2x.png") no-repeat;
+  background-size: cover; }
+
+#slide-03-caption {
+  position: absolute;
+  top: 7.08267rem;
+  left: 8.832rem;
+  width: 5.93067rem;
+  height: 4.01067rem;
+  background: url("./img/03/caption@2x.png") no-repeat;
+  background-size: cover; }
+
+#slide-03-file {
+  position: absolute;
+  top: 13.22667rem;
+  left: 0.384rem;
+  width: 12.62933rem;
+  height: 11.56267rem;
+  background: url("./img/03/file@2x.png") no-repeat;
+  background-size: cover; }
+
+#slide-03-sidetext {
+  position: absolute;
+  top: 14.976rem;
+  left: 13.35467rem;
+  width: 0.576rem;
+  height: 7.50933rem;
+  background: url("./img/03/subtext@2x.png") no-repeat;
+  background-size: cover; }
+
+#slide-04-title {
+  position: absolute;
+  top: 1.06667rem;
+  left: 50%;
+  margin-left: -4.01067rem;
+  width: 8.02133rem;
+  height: 2.98667rem;
+  background: url("./img/04/title@2x.png") no-repeat;
+  background-size: cover; }
+
+#slide-04-photo1 {
+  position: absolute;
+  top: 4.26667rem;
+  left: 0;
+  width: 10.176rem;
+  height: 5.952rem;
+  background: url("./img/04/photo1@2x.png") no-repeat;
+  background-size: cover; }
+
+#slide-04-text1 {
+  position: absolute;
+  top: 5.97333rem;
+  left: 9.51467rem;
+  width: 5.93067rem;
+  height: 2.368rem;
+  background: url("./img/04/text1@2x.png") no-repeat;
+  background-size: cover; }
+
+#slide-04-text2 {
+  position: absolute;
+  top: 12.62933rem;
+  left: 1.06667rem;
+  width: 4.928rem;
+  height: 2.51733rem;
+  background: url("./img/04/text2@2x.png") no-repeat;
+  background-size: cover; }
+
+#slide-04-photo2 {
+  position: absolute;
+  top: 11.30667rem;
+  left: 5.54667rem;
+  width: 10.56rem;
+  height: 5.952rem;
+  background: url("./img/04/photo2@2x.png") no-repeat;
+  background-size: cover;
+  z-index: 1; }
+
+#slide-04-text3 {
+  position: absolute;
+  top: 18.34667rem;
+  left: 50%;
+  margin-left: -6.784rem;
+  width: 13.568rem;
+  height: 2.19733rem;
+  background: url("./img/04/text3@2x.png") no-repeat;
+  background-size: cover;
+  z-index: 1; }
+
+#slide-04-photo3 {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 16rem;
+  height: 10.00533rem;
+  background: url("./img/04/photo3@2x.png") no-repeat;
+  background-size: cover; }
+
+#slide-05-title {
+  position: absolute;
+  top: 1.92rem;
+  left: 0.768rem;
+  width: 13.84533rem;
+  height: 1.06667rem;
+  background: url("./img/05/title@2x.png") no-repeat;
+  background-size: cover; }
+
+#slide-05-photo1 {
+  position: absolute;
+  top: 3.86133rem;
+  left: 0;
+  width: 16rem;
+  height: 11.904rem;
+  background: url("./img/05/photo1@2x.png") no-repeat;
+  background-size: cover; }
+
+#slide-05-text1 {
+  position: absolute;
+  top: 3.2rem;
+  left: 0.768rem;
+  width: 7.01867rem;
+  height: 1.088rem;
+  background: url("./img/05/text1@2x.png") no-repeat;
+  background-size: cover; }
+
+#slide-05-photo2 {
+  position: absolute;
+  top: 12.97067rem;
+  left: 0;
+  width: 7.46667rem;
+  height: 7.95733rem;
+  background: url("./img/05/photo2@2x.png") no-repeat;
+  background-size: cover; }
+
+#slide-05-photo3 {
+  position: absolute;
+  top: 12.8rem;
+  left: 6.82667rem;
+  width: 9.024rem;
+  height: 6.89067rem;
+  background: url("./img/05/photo3@2x.png") no-repeat;
+  background-size: cover; }
+
+#slide-05-photo4 {
+  position: absolute;
+  top: 19.84rem;
+  left: 6.82667rem;
+  width: 9.024rem;
+  height: 6.50667rem;
+  background: url("./img/05/photo4@2x.png") no-repeat;
+  background-size: cover; }
+
+#slide-05-subtext {
+  position: absolute;
+  top: 20.90667rem;
+  left: 0.768rem;
+  width: 4.65067rem;
+  height: 4.05333rem;
+  background: url("./img/05/subtext@2x.png") no-repeat;
+  background-size: cover; }
+
+#slide-06-title {
+  position: absolute;
+  top: 7.89333rem;
+  left: 5.12rem;
+  width: 10.28267rem;
+  height: 7.27467rem;
+  background: url("./img/06/title@2x.png") no-repeat;
+  background-size: cover;
+  z-index: 1; }
+
+#slide-06-album {
+  position: absolute;
+  top: 0.64rem;
+  left: 50%;
+  margin-left: -7.616rem;
+  width: 15.232rem;
+  height: 7.14667rem;
+  background: url("./img/06/album@2x.png") no-repeat;
+  background-size: cover; }
+
+#slide-06-photo1 {
+  position: absolute;
+  top: 10.45333rem;
+  left: 0;
+  width: 8.61867rem;
+  height: 10.752rem;
+  background: url("./img/06/photo1@2x.png") no-repeat;
+  background-size: cover; }
+
+#slide-06-photo2 {
+  position: absolute;
+  top: 13.33333rem;
+  left: 8rem;
+  width: 7.06133rem;
+  height: 8.32rem;
+  background: url("./img/06/photo2@2x.png") no-repeat;
+  background-size: cover; }
+
+#slide-06-text3 {
+  position: absolute;
+  top: 22.18667rem;
+  left: 50%;
+  margin-left: -5.94133rem;
+  width: 11.88267rem;
+  height: 0.64rem;
+  background: url("./img/06/text3@2x.png") no-repeat;
+  background-size: cover; }
+
+#slide-06-photo3 {
+  position: absolute;
+  bottom: -0.21333rem;
+  left: 0;
+  width: 16rem;
+  height: 3.17867rem;
+  background: url("./img/06/photo3@2x.png") no-repeat;
+  background-size: cover; }
+
+#slide-07-title {
+  position: absolute;
+  top: 1.6rem;
+  left: 10.19733rem;
+  width: 4.992rem;
+  height: 9.96267rem;
+  background: url("./img/07/title@2x.png") no-repeat;
+  background-size: cover; }
+
+#slide-07-horn {
+  position: absolute;
+  bottom: 0.42667rem;
+  left: 1.19467rem;
+  width: 5.376rem;
+  height: 5.84533rem;
+  background: url("./img/07/horn@2x.png") no-repeat;
+  background-size: cover; }
+
+#slide-07-film {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 16rem;
+  height: 26.66667rem;
+  background: url("./img/07/film@2x.png") no-repeat;
+  background-size: cover; }
+
+#slide-07-photo1 {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 6.10133rem;
+  height: 10.66667rem;
+  background: url("./img/07/photo1@2x.png") no-repeat;
+  background-size: cover; }
+
+#slide-07-text1 {
+  position: absolute;
+  top: 2.00533rem;
+  left: 4.58667rem;
+  width: 2.66667rem;
+  height: 2.70933rem;
+  background: url("./img/07/text1@2x.png") no-repeat;
+  background-size: cover; }
+
+#slide-07-photo2 {
+  position: absolute;
+  top: 8.512rem;
+  left: 1.87733rem;
+  width: 8.256rem;
+  height: 7.95733rem;
+  background: url("./img/07/photo2@2x.png") no-repeat;
+  background-size: cover; }
+
+#slide-07-text2 {
+  position: absolute;
+  top: 12.48rem;
+  left: 0;
+  width: 3.62667rem;
+  height: 4.672rem;
+  background: url("./img/07/text2@2x.png") no-repeat;
+  background-size: cover; }
+
+#slide-07-photo3 {
+  position: absolute;
+  top: 14.22933rem;
+  left: 5.93067rem;
+  width: 8.256rem;
+  height: 7.95733rem;
+  background: url("./img/07/photo3@2x.png") no-repeat;
+  background-size: cover; }
+
+#slide-07-text3 {
+  position: absolute;
+  top: 17.49333rem;
+  left: 3.2rem;
+  width: 3.79733rem;
+  height: 5.376rem;
+  background: url("./img/07/text3@2x.png") no-repeat;
+  background-size: cover; }
+
+#slide-07-photo4 {
+  position: absolute;
+  top: 19.92533rem;
+  left: 9.984rem;
+  width: 6.016rem;
+  height: 6.54933rem;
+  background: url("./img/07/photo4@2x.png") no-repeat;
+  background-size: cover; }
+
+#slide-07-text4 {
+  position: absolute;
+  top: 23.44533rem;
+  left: 7.936rem;
+  width: 2.048rem;
+  height: 2.944rem;
+  background: url("./img/07/text4@2x.png") no-repeat;
+  background-size: cover; }
+
+#slide-08-flag {
+  position: absolute;
+  top: 0.93867rem;
+  left: 1.23733rem;
+  width: 3.69067rem;
+  height: 2.112rem;
+  background: url("./img/08/flag@2x.png") no-repeat;
+  background-size: cover; }
+
+#slide-08-title {
+  position: absolute;
+  top: 3.75467rem;
+  left: 50%;
+  margin-left: -6.89067rem;
+  width: 13.78133rem;
+  height: 4.26667rem;
+  background: url("./img/08/title@2x.png") no-repeat;
+  background-size: cover; }
+
+#slide-08-subtitle {
+  position: absolute;
+  top: 9.856rem;
+  left: 50%;
+  margin-left: -4.58667rem;
+  width: 8.53333rem;
+  height: 1.19467rem;
+  background: url("./img/08/subtitle@2x.png") no-repeat;
+  background-size: cover; }
+
+#slide-09-redcloth {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 16rem;
+  height: 5.696rem;
+  background: url("./img/09/redcloth@2x.png") no-repeat;
+  background-size: cover; }
+
+#slide-09-title {
+  position: absolute;
+  top: 1.06667rem;
+  left: 50%;
+  margin-left: -4.74667rem;
+  width: 9.49333rem;
+  height: 3.328rem;
+  background: url("./img/09/title@2x.png") no-repeat;
+  background-size: cover;
+  z-index: 1; }
+
+#slide-09-plane {
+  position: absolute;
+  top: 0.21333rem;
+  right: 0;
+  width: 2.88rem;
+  height: 4.18133rem;
+  background: url("./img/09/plane@2x.png") no-repeat;
+  background-size: cover;
+  z-index: 2; }
+
+#slide-09-photo {
+  position: absolute;
+  top: 5.20533rem;
+  left: 50%;
+  margin-left: -6.60267rem;
+  width: 13.20533rem;
+  height: 9.344rem;
+  background: url("./img/09/photo@2x.png") no-repeat;
+  background-size: cover; }
+
+#slide-09-balloon1 {
+  position: absolute;
+  top: 11.69067rem;
+  left: 0.64rem;
+  width: 2.432rem;
+  height: 3.92533rem;
+  background: url("./img/09/balloon1@2x.png") no-repeat;
+  background-size: cover;
+  z-index: 1; }
+
+#slide-09-file {
+  position: absolute;
+  top: 15.89333rem;
+  left: 50%;
+  margin-left: -7.38133rem;
+  width: 14.76267rem;
+  height: 7.616rem;
+  background: url("./img/09/file@2x.png") no-repeat;
+  background-size: cover; }
+
+#slide-09-balloon2 {
+  position: absolute;
+  top: 22.74133rem;
+  left: 13.73867rem;
+  width: 2.13333rem;
+  height: 3.66933rem;
+  background: url("./img/09/balloon2@2x.png") no-repeat;
+  background-size: cover;
+  z-index: 1; }
+
+#slide-10-plane {
+  position: absolute;
+  top: 0.21333rem;
+  right: 0.21333rem;
+  width: 4.71467rem;
+  height: 5.16267rem;
+  background: url("./img/10/plane@2x.png") no-repeat;
+  background-size: cover; }
+
+#slide-10-image1 {
+  position: absolute;
+  top: 0.768rem;
+  left: 0.42667rem;
+  width: 8.27733rem;
+  height: 9.472rem;
+  background: url("./img/10/image1@2x.png") no-repeat;
+  background-size: cover; }
+
+#slide-10-image2 {
+  position: absolute;
+  top: 4.82133rem;
+  left: 8.91733rem;
+  width: 6.336rem;
+  height: 5.46133rem;
+  background: url("./img/10/image2@2x.png") no-repeat;
+  background-size: cover; }
+
+#slide-10-image3 {
+  position: absolute;
+  top: 13.73867rem;
+  left: 0.17067rem;
+  width: 7.01867rem;
+  height: 6.016rem;
+  background: url("./img/10/image3@2x.png") no-repeat;
+  background-size: cover; }
+
+#slide-10-image4 {
+  position: absolute;
+  top: 10.45333rem;
+  left: 6.35733rem;
+  width: 9.216rem;
+  height: 9.30133rem;
+  background: url("./img/10/image4@2x.png") no-repeat;
+  background-size: cover; }
+
+#slide-10-slogan {
+  position: absolute;
+  bottom: 0;
+  left: 0.128rem;
+  width: 15.872rem;
+  height: 7.06133rem;
+  background: url("./img/10/slogan@2x.png") no-repeat;
+  background-size: cover; }
+
+#slide-11-title {
+  position: absolute;
+  top: 1.792rem;
+  left: 50%;
+  margin-left: -6.336rem;
+  width: 12.672rem;
+  height: 0.81067rem;
+  background: url("./img/11/title@2x.png") no-repeat;
+  background-size: cover; }
+
+#slide-11-timeline {
+  position: absolute;
+  top: 5.03467rem;
+  left: 50%;
+  margin-left: -0.16rem;
+  width: 0.32rem;
+  height: 21.696rem;
+  background: url("./img/11/timeline@2x.png") no-repeat;
+  background-size: cover; }
+
+#slide-11-event1 {
+  position: absolute;
+  top: 4.24533rem;
+  left: 1.536rem;
+  width: 5.952rem;
+  height: 3.264rem;
+  background: url("./img/11/event1@2x.png") no-repeat;
+  background-size: cover; }
+
+#slide-11-text1 {
+  position: absolute;
+  top: 4.672rem;
+  left: 8.576rem;
+  width: 4.736rem;
+  height: 1.06667rem;
+  background: url("./img/11/text1@2x.png") no-repeat;
+  background-size: cover; }
+
+#slide-11-event2 {
+  position: absolute;
+  top: 6.50667rem;
+  left: 8.576rem;
+  width: 6.48533rem;
+  height: 3.47733rem;
+  background: url("./img/11/event2@2x.png") no-repeat;
+  background-size: cover; }
+
+#slide-11-text2 {
+  position: absolute;
+  top: 7.46667rem;
+  left: 2.00533rem;
+  width: 4.69333rem;
+  height: 1.68533rem;
+  background: url("./img/11/text2@2x.png") no-repeat;
+  background-size: cover; }
+
+#slide-11-event3 {
+  position: absolute;
+  top: 9.728rem;
+  left: 1.42933rem;
+  width: 6.144rem;
+  height: 3.60533rem;
+  background: url("./img/11/event3@2x.png") no-repeat;
+  background-size: cover; }
+
+#slide-11-text3 {
+  position: absolute;
+  top: 10.38933rem;
+  left: 8.64rem;
+  width: 6.31467rem;
+  height: 1.17333rem;
+  background: url("./img/11/text3@2x.png") no-repeat;
+  background-size: cover; }
+
+#slide-11-event4 {
+  position: absolute;
+  top: 12.544rem;
+  left: 8.576rem;
+  width: 6.57067rem;
+  height: 3.24267rem;
+  background: url("./img/11/event4@2x.png") no-repeat;
+  background-size: cover; }
+
+#slide-11-text4 {
+  position: absolute;
+  top: 13.35467rem;
+  left: 1.96267rem;
+  width: 4.864rem;
+  height: 1.536rem;
+  background: url("./img/11/text4@2x.png") no-repeat;
+  background-size: cover; }
+
+#slide-11-event5 {
+  position: absolute;
+  top: 15.57333rem;
+  left: 1.32267rem;
+  width: 6.25067rem;
+  height: 3.66933rem;
+  background: url("./img/11/event5@2x.png") no-repeat;
+  background-size: cover; }
+
+#slide-11-text5 {
+  position: absolute;
+  top: 16.256rem;
+  left: 8.576rem;
+  width: 4.736rem;
+  height: 1.13067rem;
+  background: url("./img/11/text5@2x.png") no-repeat;
+  background-size: cover; }
+
+#slide-11-event6 {
+  position: absolute;
+  top: 18.944rem;
+  left: 8.576rem;
+  width: 6.48533rem;
+  height: 3.776rem;
+  background: url("./img/11/event6@2x.png") no-repeat;
+  background-size: cover; }
+
+#slide-11-text6 {
+  position: absolute;
+  top: 19.904rem;
+  left: 2.73067rem;
+  width: 4.77867rem;
+  height: 1.19467rem;
+  background: url("./img/11/text6@2x.png") no-repeat;
+  background-size: cover; }
+
+#slide-11-event7 {
+  position: absolute;
+  top: 22.22933rem;
+  left: 1.17333rem;
+  width: 6.48533rem;
+  height: 3.47733rem;
+  background: url("./img/11/event7@2x.png") no-repeat;
+  background-size: cover; }
+
+#slide-11-text7 {
+  position: absolute;
+  top: 23.36rem;
+  left: 8.64rem;
+  width: 5.41867rem;
+  height: 1.152rem;
+  background: url("./img/11/text7@2x.png") no-repeat;
+  background-size: cover; }
+
+#slide-12-title {
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  width: 15.18933rem;
+  height: 19.66933rem;
+  background: url("./img/12/title@2x.png") no-repeat;
+  background-size: cover; }
+
+#slide-12-photo1 {
+  position: absolute;
+  top: 0.91733rem;
+  left: 1.87733rem;
+  width: 12.13867rem;
+  height: 9.55733rem;
+  background: url("./img/12/photo1@2x.png") no-repeat;
+  background-size: cover; }
+
+#slide-12-photo2 {
+  position: absolute;
+  top: 10.88rem;
+  left: 1.87733rem;
+  width: 5.504rem;
+  height: 5.46133rem;
+  background: url("./img/12/photo2@2x.png") no-repeat;
+  background-size: cover; }
+
+#slide-12-photo3 {
+  position: absolute;
+  top: 16.72533rem;
+  left: 1.87733rem;
+  width: 5.504rem;
+  height: 5.22667rem;
+  background: url("./img/12/photo3@2x.png") no-repeat;
+  background-size: cover; }
+
+#slide-12-photo4 {
+  position: absolute;
+  top: 10.88rem;
+  left: 7.936rem;
+  width: 6.18667rem;
+  height: 9.81333rem;
+  background: url("./img/12/photo4@2x.png") no-repeat;
+  background-size: cover; }
+
+#slide-13-title {
+  position: absolute;
+  top: 2.60267rem;
+  left: 8.66133rem;
+  width: 6.208rem;
+  height: 6.31467rem;
+  background: url("./img/13/title@2x.png") no-repeat;
+  background-size: cover; }
+
+#slide-13-photo1 {
+  position: absolute;
+  top: 1.81333rem;
+  left: 1.00267rem;
+  width: 7.168rem;
+  height: 8.23467rem;
+  background: url("./img/13/photo1@2x.png") no-repeat;
+  background-size: cover; }
+
+#slide-13-photo2 {
+  position: absolute;
+  top: 10.83733rem;
+  left: 0.256rem;
+  width: 9.36533rem;
+  height: 8.23467rem;
+  background: url("./img/13/photo2@2x.png") no-repeat;
+  background-size: cover; }
+
+#slide-13-photo3 {
+  position: absolute;
+  top: 9.728rem;
+  left: 8.85333rem;
+  width: 7.14667rem;
+  height: 6.528rem;
+  background: url("./img/13/photo3@2x.png") no-repeat;
+  background-size: cover; }
+
+#slide-14-photo1 {
+  position: absolute;
+  top: 1.81333rem;
+  left: 1.00267rem;
+  width: 7.168rem;
+  height: 8.21333rem;
+  background: url("./img/14/photo1@2x.png") no-repeat;
+  background-size: cover; }
+
+#slide-14-photo2 {
+  position: absolute;
+  top: 6.74133rem;
+  left: 7.89333rem;
+  width: 6.4rem;
+  height: 6.35733rem;
+  background: url("./img/14/photo2@2x.png") no-repeat;
+  background-size: cover;
+  z-index: 1; }
+
+#slide-14-photo3 {
+  position: absolute;
+  top: 1.77067rem;
+  left: 0;
+  width: 14.95467rem;
+  height: 16.98133rem;
+  background: url("./img/14/photo3@2x.png") no-repeat;
+  background-size: cover; }
+
+.slide-15-event {
+  position: absolute;
+  top: 5.54667rem;
+  left: 50%;
+  margin-left: -5.376rem;
+  width: 10.70933rem;
+  height: 10.70933rem;
+  background-size: cover; }
+
+#slide-15-event1 {
+  background: url("./img/15/event1@2x.png") no-repeat;
+  background-size: cover; }
+
+#slide-15-event2 {
+  background: url("./img/15/event2@2x.png") no-repeat;
+  background-size: cover; }
+
+#slide-15-event3 {
+  background: url("./img/15/event3@2x.png") no-repeat;
+  background-size: cover; }
+
+#slide-15-event4 {
+  background: url("./img/15/event4@2x.png") no-repeat;
+  background-size: cover; }
+
+#slide-15-event5 {
+  background: url("./img/15/event5@2x.png") no-repeat;
+  background-size: cover; }
+
+#slide-15-event6 {
+  background: url("./img/15/event6@2x.png") no-repeat;
+  background-size: cover; }
+
+#slide-15-event7 {
+  background: url("./img/15/event7@2x.png") no-repeat;
+  background-size: cover; }
+
+#slide-15-event8 {
+  background: url("./img/15/event8@2x.png") no-repeat;
+  background-size: cover; }
+
+#slide-15-caption1 {
+  position: absolute;
+  top: 10.496rem;
+  left: 50%;
+  margin-left: -3.02933rem;
+  width: 6.05867rem;
+  height: 0.96rem;
+  background: url("./img/15/caption1@2x.png") no-repeat;
+  background-size: cover; }
+
+#slide-15-caption2 {
+  position: absolute;
+  top: 13.312rem;
+  left: 50%;
+  margin-left: -3.02933rem;
+  width: 6.05867rem;
+  height: 0.96rem;
+  background: url("./img/15/caption2@2x.png") no-repeat;
+  background-size: cover; }
+
+#slide-15-left {
+  position: absolute;
+  top: 5.97333rem;
+  left: 0.59733rem;
+  width: 1.38667rem;
+  height: 12.39467rem;
+  background: url("./img/15/left@2x.png") no-repeat;
+  background-size: cover; }
+
+#slide-15-right {
+  position: absolute;
+  top: 5.84533rem;
+  right: 0.59733rem;
+  margin-left: -4.62933rem;
+  width: 1.49333rem;
+  height: 12.48rem;
+  background: url("./img/15/right@2x.png") no-repeat;
+  background-size: cover; }
+
+#slide-15-watch {
+  position: absolute;
+  top: 3.66933rem;
+  left: 50%;
+  margin-left: -4.62933rem;
+  width: 9.25867rem;
+  height: 12.88533rem;
+  background: url("./img/15/watch@2x.png") no-repeat;
+  background-size: cover; }
+
+#slide-15-needle {
+  position: absolute;
+  top: 9.92rem;
+  left: 50%;
+  margin-left: -0.17067rem;
+  width: 0.34133rem;
+  height: 3.62667rem;
+  background: url("./img/15/needle@2x.png") no-repeat;
+  background-size: cover;
+  transform: rotate(60deg); }
+
+#slide-15-title {
+  position: absolute;
+  top: 19.456rem;
+  left: 50%;
+  margin-left: -3.69067rem;
+  width: 7.38133rem;
+  height: 4.16rem;
+  background: url("./img/15/title@2x.png") no-repeat;
+  background-size: cover; }
+
+#slide-15-support {
+  position: absolute;
+  bottom: 0.42667rem;
+  left: 50%;
+  margin-left: -3.328rem;
+  width: 6.656rem;
+  height: 0.42667rem;
+  background: url("./img/15/support@2x.png") no-repeat;
+  background-size: cover; }
+
+.clockRotation {
+  animation-name: clockRotation; }
+
+@keyframes clockRotation {
+  0% {
+    transform: rotate(60deg); }
+  100% {
+    transform: rotate(360deg); } }
+#audio-btn {
+  position: fixed;
+  right: 0.42667rem;
+  top: 0.42667rem;
+  width: 1.28rem;
+  height: 1.28rem;
+  opacity: .8;
+  background: url("./img/audio.png") no-repeat;
+  background-size: contain;
+  z-index: 100; }
+
+.rotate {
+  -webkit-animation: rotating 1.2s linear infinite;
+  -moz-animation: rotating 1.2s linear infinite;
+  -o-animation: rotating 1.2s linear infinite;
+  animation: rotating 1.2s linear infinite; }
+
+@keyframes rotating {
+  from {
+    transform: rotate(0); }
+  to {
+    transform: rotate(360deg); } }
+@-moz-keyframes rotating {
+  from {
+    -moz-transform: rotate(0); }
+  to {
+    -moz-transform: rotate(360deg); } }
+.fancybox-caption {
+  font-size: .7rem !important;
+  line-height: 1.5 !important; }
+
+/* mend */
+@media screen and (max-height: 590px) {
+  #slide-04-photo3 {
+    bottom: -2rem; } }

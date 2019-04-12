@@ -1,0 +1,51 @@
+.index_root {
+  display: flex;
+  flex-direction: row-reverse;
+}
+
+.root {
+
+  height: 56rem;
+  background-color: #306bcf;
+  background-position: 50% 0;
+  background-repeat: no-repeat;
+}
+
+.am-g {
+  height: 80%;
+}
+
+.am-u-md-3 {
+
+background-color: #fff !important;
+float: right;
+ margin-right: 6rem;
+ margin-top: 5rem;
+ margin-bottom: 5rem;
+ padding-top: 3rem;
+}
+.am-u-md-5{
+
+background-color: #fff !important;
+float: right;
+ margin-right: 6rem;
+ margin-top: 5rem;
+ margin-bottom: 5rem;
+ padding-top: 3rem;
+}
+footer{
+position: absolute;
+width: 100%;
+bottom: -55.6px;
+height: 55.6px;
+}
+.title2{
+	margin-bottom: 10px;
+}
+
+#page2{
+	height: 490px
+}
+#page3 {
+	height: 490px
+}

@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1,user-scalable=0">
+    <title>接收订单</title>
+    <link rel="stylesheet" href="//cdn.bootcss.com/weui/1.1.2/style/weui.min.css">
+</head>
+
+<body>
+    <div class="weui-panel weui-panel_access">
+        <div class="weui-panel__bd">
+
+
+            <div class="weui-cells weui-cells_form">
+                <div class="weui-cell__hd">
+                        <label for="" class="weui-label">已接订单</label>
+                </div>
+   
+
+
+            <volist name="things" id="thing" >
+                <div  class="weui-media-box weui-media-box_appmsg">
+                    <div class="weui-media-box__hd">
+                            <img class="weui-media-box__thumb" src="/Public/Home/img/mytrade/heart-7.png">
+                    </div>
+                    <div class="weui-media-box__bd">
+                        <h4 class="weui-media-box__title">送往:{$thing.place}</h4>
+                        <p class="weui-media-box__desc">{$thing.num}</p>
+                       <p class="weui-media-box__desc">{$thing.company}</p>
+                    </div> <a href="javascript:;" class="weui-btn weui-btn_plain-primary but" id='/home/workermytrade/getpa/reid/{$thing.recordid}'>已取到</a>   
+                      
+                </div>
+            </volist>
+
+
+        </div>
+    </div>
+    <div class="te" id='tex' style="display: none"></div>
+    
+</div>
+
+</body>
+<script src="//cdn.bootcss.com/jquery/3.1.1/jquery.min.js"></script>
+<script type="text/javascript">
+    
+    $('.but').on('click', function(event) {
+        event = event ? event : window.event; 
+        var obj = event.srcElement ? event.srcElement : event.target; 
+        var $obj = $(obj);
+        $('#tex').attr('class',$(obj).attr('id'));
+           var pn =  $('#tex').attr('class');//#gotopagenum是文本框的id属性  
+      location.href =pn ;//location.href实现客户端页面的跳转  
+    });
+
+
+
+</script>
+</html>

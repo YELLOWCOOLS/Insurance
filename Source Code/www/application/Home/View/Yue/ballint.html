@@ -1,0 +1,328 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta name="viewport" content="width=device-width, initial-scale=1,user-scalable=no">
+</head>
+
+<body>
+  <div id="zoom-marker-div" class="zoom-marker-div" style="visibility:hidden ;position: fixed;">
+    <img class="zoom-marker-img" id="zoom-marker-img" alt="..." name="viewArea" draggable="false" />
+    <button id='hidbt' class="weui-btn weui-btn_plain-primary">确定</button>
+  </div>
+  <script src="/Public/Home/js/jquery-1.11.3.min.js"></script>
+  <script src="/Public/Home/js/jquery.mousewheel.min.js"></script>
+  <script src="/Public/Home/js/require/iscroll.js"></script>
+  <script src="/Public/Home/js/datePicker.js"></script>
+  <script src="/Public/Home/js/hammer.min.js"></script>
+  <script src="/Public/Home/js/zoom-marker.js"></script>
+  <link rel="stylesheet" href="//cdn.bootcss.com/weui/1.1.2/style/weui.min.css">
+  <link rel="stylesheet" href="/Public/Home/css/zoom-marker.css">
+  <link rel="stylesheet" href="/Public/Home/css/datePicker.css">
+  <link rel="stylesheet" href="/Public/Home/css/yue/newroom.css">
+  <div class="page__bd">
+
+    <form id="fm" action="/home/yue/addroom" method="POST">
+     <input class="weui-input" type="text" name="type" value=1 style="display: none">
+      <div class="weui-cells weui-cells_form">
+        <div class="weui-cells__title">房间基本信息</div>
+        <div class="weui-cell weui-cell_select weui-cell_select-after">
+          <div class="weui-cell__hd">
+            <label for="" class="weui-label">房间名</label>
+          </div>
+          <div class="weui-cell__bd">
+            <input class="weui-input" type="text" name="rname" placeholder="请输入房间名">
+          </div>
+        </div>
+        <div class="weui-cell ">
+          <div class="weui-cell__hd">
+            <label for="" class="weui-label">房间最大人数</label>
+          </div>
+          <div class="weui-cell__bd">
+            <select class='weui-select' name="num">
+              <option value="3">3</option>
+              <option value="4">4</option>
+              <option value="5">5</option>
+              <option value="6">6</option>
+              <option value="7">7</option>
+              <option value="8">8</option>
+            </select>
+          </div>
+        </div>
+        <div class="weui-cell weui-cell_select weui-cell_select-after">
+          <div class="weui-cell__hd">
+            <label for="" class="weui-label">约定地点</label>
+          </div>
+          <div class="weui-cell__bd">
+            <input class="weui-input" type="text" name="place" placeholder="请输入约定地点">
+          </div>
+        </div>
+        <a href="javascript:" class="mapbt weui-btn weui-btn_mini weui-btn_default">在地图上标记</a>
+        <input class="px" type="text" name="px" style="visibility:hidden">
+        <input class="py" type="text" name="py" style="visibility:hidden">
+        <div class="weui-cell weui-cell_select weui-cell_select-after">
+          <div class="weui-cell__hd">
+            <label for="" class="weui-label">约定时间</label>
+          </div>
+          <input id="date5" readonly="" name="starttime" placeholder="年-月-日-时间" type="text">
+        </div>
+        <div class="weui-cell weui-cell_select weui-cell_select-after">
+          <div class="weui-cell__hd">
+            <label for="" class="weui-label">截止时间</label>
+          </div>
+          <input id="date6" readonly="" name="endtime" placeholder="年-月-日-时间" type="text">
+        </div>
+      </div>
+      <div class="weui-btn-area">
+        <div class="weui-cell__hd">
+          <a class="weui-btn weui-btn_primary" href="javascript:" id="submit">发起房间</a>
+        </div>
+      </div>
+    </form>
+  </div>
+  <script type="text/javascript">
+  $('.mapbt').click(function() {
+    $('.page__bd').attr('style', 'visibility:hidden');
+    $('#zoom-marker-div').attr('style', 'visibility:visible;position: fixed');
+  });
+  $('#hidbt').click(function() {
+    $('.page__bd').attr('style', 'visibility:visible');
+    $('#zoom-marker-div').attr('style', 'visibility:hidden;position: fixed');
+  });
+  $('#submit').click(function() {
+    var dat1 = new Date($('#date5').val());
+    var now = new Date();
+    var dat2 = new Date($('#date6').val())
+    if (dat1.getTime() - now.getTime() < 86400000) {
+      alert("请至少提前24h建立房间");
+      return;
+    }
+    if (dat1.getTime() - now.getTime() > 604800000) {
+      alert("最多提前一周建立房间，请重新选择时间");
+      return;
+    }
+    if (dat2.getTime() - dat1.getTime() > 43200000) {
+      alert("活动至多存在12h");
+      return;
+    }
+    if (dat2.getTime() - dat1.getTime() < 0) {
+      alert("时间错误");
+      return;
+    }
+    $('#fm').submit();
+  });
+  $(document).ready(function() {
+    $(function() {
+      $('#date5').datePicker({
+        beginyear: 1900,
+        theme: 'datetime',
+        callBack: function() {
+          // alert("--!当前值:" + $('#date5').val());
+
+        }
+      });
+      $('#date6').datePicker({
+        beginyear: 2005,
+        theme: 'datetime',
+      });
+
+    });
+
+    function countTime(opt) {
+      var now = new Date().getTime();
+      var defaultOpt = {
+        st: now, //开始时间,时间戳
+        et: now, //结束时间,时间戳
+
+        sdom: null,
+        mdom: null,
+        hdom: null,
+        ddom: null,
+        Mdom: null,
+        ydom: null
+      };
+      this.opt = $.extend({}, defaultOpt, opt);
+      this.h = 0;
+      this.m = 0;
+      this.s = 0;
+      this.d = 0;
+      this.M = 0;
+      this.y = 0;
+      this.init = function() {
+        if (now >= this.st) {
+          this.interCount();
+        } else {
+          this.interCount();
+        }
+      };
+      this.interCount = function() {
+        var _this = this;
+        var bTime = _this.bTime();
+        if (bTime > 0) {
+          _this.interSwitch = setInterval(function() {
+            bTime--;
+            if (bTime < 0) {
+              clearInterval(_this.interSwitch);
+            } else {
+              _this.renderTime(bTime);
+            }
+          }, 1000);
+        } else {
+
+        }
+      };
+      this.bTime = function() { //距离的时间(单位s)
+        return Math.round(this.opt.et / 1000 - now / 1000);
+      };
+      this.renderTime = function(t) {
+        /*if (t <= 60) {
+            this.h = 0;
+            this.m = 0;
+            this.s = t;
+        } else {
+            if (Math.floor(t / 60) < 60) {
+                this.m = Math.floor(t / 60);
+                this.h = 0;
+                this.s = t % 60;
+            } else {
+                this.h = Math.floor(t / 3600);
+                this.m = Math.floor(t / 60) % 60;
+                this.s = t % 60;
+            }
+        }*/
+        this.s = t % 60;
+        this.m = Math.floor(t / 60) % 60;
+        this.h = (Math.floor(t / 3600) % 60) % 24;
+        this.d = Math.floor(t / 86400) % 30;
+        this.M = Math.floor(t / 2592000) % 12;
+        this.y = Math.floor(t / 31104000);
+        this.opt.ydom.innerHTML = this.y < 10 ? "0" + this.y : this.y;
+        this.opt.Mdom.innerHTML = this.M < 10 ? "0" + this.M : this.M;
+        this.opt.ddom.innerHTML = this.d < 10 ? "0" + this.d : this.d;
+        this.opt.hdom.innerHTML = this.h < 10 ? "0" + this.h : this.h;
+        this.opt.mdom.innerHTML = this.m < 10 ? "0" + this.m : this.m;
+        this.opt.sdom.innerHTML = this.s < 10 ? "0" + this.s : this.s;
+
+      }
+
+    };
+    var two = new countTime({
+      et: new Date().getTime(),
+
+      ydom: document.getElementById('y'),
+      Mdom: document.getElementById('M'),
+      ddom: document.getElementById('d'),
+      hdom: document.getElementById('h'),
+      mdom: document.getElementById('m'),
+      sdom: document.getElementById('s')
+    });
+    two.init();
+
+
+
+
+
+
+
+
+
+    /******************* init navigator button, no need for users' initialization *********************/
+    var picTag = 0;
+    var tagNumber = 1;
+    $('#zoom-marker-btn-switch').click(function(e) {
+      $('#zoom-marker-img').zoomMarker_CleanMarker();
+      if (picTag === 0) {
+        $('#zoom-marker-img').zoomMarker_LoadImage("img/rail.jpg");
+      } else if (picTag === 1) {
+        $('#zoom-marker-img').zoomMarker_LoadImage("img/mountain.jpg");
+      }
+      picTag = 1 - picTag;
+    });
+
+    $('#zoom-marker-btn-clean').click(function(e) {
+      $('#zoom-marker-img').zoomMarker_CleanMarker();
+    });
+
+    // this array stores the styles for EASY-LOADING
+    var styleList = [
+      "BALL_PULSE",
+      "BALL_CLIP_ROTATE", "BALL_CLIP_ROTATE_PULSE", "SQURE_SPIN", "BALL_CLIP_ROTATE_MULTIPLE",
+      "BALL_PULSE_RISE", "BALL_ROTATE", "CUBE_TRANSITION", "BALL_ZIP_ZAG", "BALL_ZIP_ZAG_DEFLECT",
+      "BALL_TRIANGLE_PATH", "BALL_SCALE", "LINE_SCALE", "LINE_SCALE_PARTY", "BALL_SCALE_MULTIPLE",
+      "BALL_PULSE_SYNC", "BALL_BEAT", "LINE_SCALE_PULSE_OUT", "LINE_SCALE_PULSE_OUT_RAPID",
+      "BALL_SCALE_RIPPLE", "BALL_SCALE_RIPPLE_MULTIPLE", "BALL_SPIN_FADE_LOADER", "LINK_SPIN_FADE_LOADER",
+      "TRIANGLE_SKEW_SPIN", "PACMAN", "SEMI_CIRCLE_SPIN"
+    ];
+    var stylePosition = 0;
+    $('#zoom-marker-btn-loading').click(function(e) {
+      EasyLoading.show({
+        text: $("<span>" + styleList[stylePosition] + "</span>"),
+        button: $("<span>dismiss</span>"),
+        type: EasyLoading.TYPE[styleList[stylePosition]],
+        //timeout: EasyLoading.TIMEOUT.FAST,
+        callback: function(event, data) {
+          switch (event) {
+
+            case 'on_btn_click':
+              console.log(data);
+              break;
+            case 'on_loaded':
+              console.log("callback with options:" + JSON.stringify(data));
+              break;
+          }
+        }
+      });
+      if (++stylePosition >= styleList.length)
+        stylePosition = 0;
+    });
+
+    // handle "TAP" event and add marker to image
+    $("#zoom-marker-img").on("zoom_marker_mouse_click", function(event, position) {
+      $('#zoom-marker-img').zoomMarker_CleanMarker();
+      $('.px').val(position.x);
+      $('.py').val(position.y);
+
+      $('#zoom-marker-img').zoomMarker_AddMarker({
+
+        src: "/Public/Home/img/yue/marker.svg",
+        x: position.x,
+        y: position.y,
+        size: 30,
+
+        hint: { value: " ", style: { color: "#ffffff", left: "10px" } }
+      });
+
+    });
+
+    // listen to marker click event, print to console and delete the marker
+
+
+    // message for the beginning of image loading process
+
+    // message for image loaded
+    $('#zoom-marker-img').on("zoom_marker_img_loaded", function(event, size) {
+      console.log("image has been loaded with size: " + JSON.stringify(size));
+      // we have to set a timer in order to watching the loader in local environment, cause the loading speed is too fast
+      setTimeout(function() {
+        EasyLoading.hide();
+      }, 3000);
+    });
+
+
+
+    /******************** INIT ZoomMarker here *****************************/
+
+
+    $('#zoom-marker-img').zoomMarker({
+      src: "/Public/Home/img/yue/schoolmap.png",
+      rate: 0.2,
+      width: 600,
+      max: 6000,
+      markers: [
+        { src: "/Public/Home/img/yue/marker.svg", x: 629, y: 228 }
+      ]
+    });
+  })
+
+  </script>
+</body>

@@ -1,0 +1,194 @@
+<extend name="Public:newlayout" />
+<block name="content">
+  <div class="page__bd" style="margin-bottom: 40px">
+    <form action="/home/newmenu/dotrade"  method="POST">
+      <div class="weui-cells weui-cells_form">
+       <div class="weui-cells__title">货件基本信息</div>
+        <div class="weui-cell weui-cell_select weui-cell_select-after">
+
+          <div class="weui-cell__hd">
+            <label for="" class="weui-label">快递公司</label>
+          </div>
+          <div class="weui-cell__bd">
+            <select class='weui-select' name="company">
+              <option value="京东">京东</option>
+              <option value="天猫">顺丰</option>
+              <option value="其它">其它</option>
+            </select>
+          </div>
+        </div>
+        <div class="weui-cell ">
+          <div class="weui-cell__hd">
+            <label for="" class="weui-label">取单序号</label>
+          </div>
+          <div class="weui-cell__bd">
+            <input class="weui-input" type="text" name="number" placeholder="请输入取单序号">
+          </div>
+        </div>
+       <div class="weui-cell weui-cell_select weui-cell_select-after">
+          <div class="weui-cell__hd">
+            <label for="" class="weui-label">取货地点</label>
+          </div>
+          <div class="weui-cell__bd">
+            <select class='weui-select'  name="place">
+              <option value="静思园">静思园</option>
+              <option value="武川寺">武川寺</option>
+              <option value="19公寓">19号公寓</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="weui-cells__title">货件大小</div>
+
+
+
+        <div class="weui-cells weui-cells_radio">
+        
+
+          <label class="weui-cell weui-check__label" for="x21">
+            <div class="weui-cell__bd">
+              <p>大（超过5kg）</p>
+            </div>
+            <div class="weui-cell__ft">
+              <input type="radio" value='2' name="weight" id='x21' class="weui-check" >
+              <span class="weui-icon-checked"></span>
+            </div>
+          </label>
+          <label class="weui-cell weui-check__label" for="x22">
+            <div class="weui-cell__bd">
+              <p>中（超过2kg）</p>
+            </div>
+            <div class="weui-cell__ft">
+              <input type="radio" value='1' name="weight" id='x22' class="weui-check" >
+              <span class="weui-icon-checked"></span>
+            </div>
+          </label>
+           <label class="weui-cell weui-check__label" for="x23">
+            <div class="weui-cell__bd">
+              <p>小（2kg以下）</p>
+            </div>
+            <div class="weui-cell__ft">
+              <input type="radio" name="weight"  value='0' id='x23' class="weui-check"  checked="checked">
+              <span class="weui-icon-checked"></span>
+            </div>
+          </label>
+        </div>
+
+        <div class="weui-cells__title">配送天气</div>
+        <div class="weui-cells weui-cells_radio">
+          <label class="weui-cell weui-check__label" for="x11">
+            <div class="weui-cell__bd">
+              <p>雨天</p>
+            </div>
+            <div class="weui-cell__ft">
+              <input type="radio" class="weui-check" value='2' id='x11' name="weather"" >
+              <span class="weui-icon-checked"></span>
+            </div>
+          </label>
+          <label class="weui-cell weui-check__label" for="x12">
+            <div class="weui-cell__bd">
+              <p>雾，风</p>
+            </div>
+            <div class="weui-cell__ft">
+              <input type="radio" name="weather" value='1' id="x12" class="weui-check"  >
+              <span class="weui-icon-checked"></span>
+            </div>
+          </label>
+          <label class="weui-cell weui-check__label" for="x13">
+            <div class="weui-cell__bd">
+              <p>其它</p>
+            </div>
+            <div class="weui-cell__ft">
+              <input type="radio" name="weather" value='0' id="x13" class="weui-check"  checked="checked">
+              <span class="weui-icon-checked"></span>
+            </div>
+          </label>
+         
+        </div>
+
+
+      </div>
+       <div class="weui-cell weui-cell_access">
+                <div class="weui-cell__bd">
+                    <span style="vertical-align: middle">配送费共计</span>
+                      
+                </div>
+                <div class="weui-cell__ft">
+                   <span id="money">
+                     2
+                   </span>
+                   <span>
+                   元
+                   </span>
+                </div>
+      </div>
+
+      <div class="weui-btn-area">
+        <div class="weui-cell__hd">
+          <a class="weui-btn weui-btn_primary" href="javascript:" id="submit">发起订单</a>
+        </div>
+      </div>
+    </form>
+  </div>
+</block>
+
+<div class="js_dialog" id="iosDialog2" style="display: none;">
+  <div class="weui-mask"></div>
+  <div class="weui-dialog">
+    <div class="weui-dialog__bd" id='errorMsg'></div>
+    <div class="weui-dialog__ft">
+      <a href="javascript:;" id="dialog2" class="weui-dialog__btn weui-dialog__btn_primary_confirm">知道了</a>
+    </div>
+  </div>
+</div>
+<block name="script">
+  <script src="http://res.wx.qq.com/open/js/jweixin-1.2.0.js" type="text/javascript"></script>
+  <script type="text/javascript">
+  $('.weui-dialog__btn_default').on('click', function() {
+    $('#iosDialog1').hide();
+  });
+  $('.weui-dialog__btn_primary').on('click', function() {
+    $('#iosDialog1').hide();
+  });
+  $('#dialog2').on('click', function() {
+    $('#iosDialog2').hide();
+  })
+
+$("form").on('change', function(event) {
+   var money=$('[name="weight"]:checked').val()*2+$('[name="weather"]:checked').val()*2+2;
+    $("#money").text(money);
+
+});
+
+  $(function() {
+    var $iosDialog1 = $('#iosDialog1');
+    $('#showIOSDialog1').on('click', function() {
+      $iosDialog1.fadeIn(200);
+    });
+  });
+
+  var showDialog2 = function(msg) {
+
+    $('#errorMsg').text(msg);
+    $('#iosDialog2').show();
+  }
+
+
+  $('#submit').click(function() {
+    var company = $('[name="company"]').val();
+    var number = $('[name="number"]').val();
+    var place = $('[name="place"]').val();
+
+    if (!company && !number && !place) {
+      showDialog2('字段不能为空');
+      return false;
+    }
+
+
+
+
+    $('form').submit();
+  });
+
+  </script>
+</block>

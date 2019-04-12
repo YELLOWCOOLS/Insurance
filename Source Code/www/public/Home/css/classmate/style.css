@@ -1,0 +1,58 @@
+html {
+  font-family: sans-serif;
+  -webkit-user-select: none;
+  user-select: none;
+  -webkit-text-size-adjust: 100%;
+  -ms-text-size-adjust: 100%; }
+
+* {
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box;
+  -webkit-tap-highlight-color: transparent; }
+
+html,
+body {
+  width: 100%;
+  height: 100%; }
+
+body {
+  position: relative;
+  width: 16rem;
+  margin: 0 auto; }
+
+.page {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  background-position: center;
+  background: url(./img/bg.jpg) no-repeat;
+  background-size: cover; }
+
+.classmates {
+  margin-top: 9.6rem;
+  font-size: 0.64rem; }
+  .classmates ul {
+    padding: 0 1.49333rem;
+    list-style: none; }
+    .classmates ul li {
+      width: 25%;
+      float: left;
+      text-align: center; }
+
+#year {
+  position: absolute;
+  bottom: 2.13333rem;
+  right: 3.2rem;
+  font-size: 1.28rem; }
+  #year small {
+    font-size: 1.06667rem; }
+
+#classname {
+  position: absolute;
+  bottom: 1.06667rem;
+  right: 2.13333rem;
+  font-size: 0.85333rem;
+  font-weight: 400; }
