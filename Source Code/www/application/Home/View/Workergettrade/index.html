@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1,user-scalable=0">
+    <title>接收订单</title>
+    <link rel="stylesheet" href="//cdn.bootcss.com/weui/1.1.2/style/weui.min.css">
+</head>
+
+<body>
+    <div class="weui-panel weui-panel_access">
+        <div class="weui-panel__bd">
+
+
+            <div class="weui-cells weui-cells_form">
+                <div class="weui-cell__hd">
+                        <label for="" class="weui-label">可接订单</label>
+                </div>
+   
+
+
+            <volist name="things" id="thing" >
+                <div  class="weui-media-box weui-media-box_appmsg">
+                    <div class="weui-media-box__hd">
+                            <img class="weui-media-box__thumb" src="/Public/Home/img/mytrade/heart-7.png">
+                    </div>
+                    <div class="weui-media-box__bd">
+                        <h4 class="weui-media-box__title">送往:{$thing.place}</h4>
+                        <p class="weui-media-box__desc">{$thing.num}</p>
+                       <p class="weui-media-box__desc">{$thing.company}</p>
+                    </div> <a href="javascript:;" class="weui-btn weui-btn_plain-primary but" id='/home/workergettrade/gettrade/tradeid/{$thing.recordid}/id/{$user.wxid}'>接单</a>   
+                      
+                </div>
+            </volist>
+
+
+        </div>
+    </div>
+    <div class="te" id='tex' style="display: none"></div>
+    <div class="js_dialog" id="iosDialog1" style="display: none">
+        <div class="weui-mask"></div>
+        <div class="weui-dialog">
+            <div class="weui-dialog__hd"><strong class="weui-dialog__title">提示</strong></div>
+            <div class="weui-dialog__bd">确认接下该单？</div>
+            <div class="weui-dialog__ft">
+                <a href="javascript:;" class="weui-dialog__btn weui-dialog__btn_default">取消</a>
+                <a href="javascript:;" class="weui-dialog__btn weui-dialog__btn_primary">确认</a>
+            </div>
+        </div>
+    </div>
+</div>
+
+</body>
+<script src="//cdn.bootcss.com/jquery/3.1.1/jquery.min.js"></script>
+<script type="text/javascript">
+    $('.weui-dialog__btn_default').on('click', function(){
+    $('#iosDialog1').hide();
+});
+    $('.weui-dialog__btn_primary').on('click', function(){
+
+      var pn =  $('#tex').attr('class');//#gotopagenum是文本框的id属性  
+      location.href =pn ;//location.href实现客户端页面的跳转  
+   
+});
+    $('.but').on('click', function(event) {
+        event = event ? event : window.event; 
+        var obj = event.srcElement ? event.srcElement : event.target; 
+        var $obj = $(obj);
+        $('#tex').attr('class',$(obj).attr('id'));
+         $('#iosDialog1').show();
+    });
+
+
+
+</script>
+</html>

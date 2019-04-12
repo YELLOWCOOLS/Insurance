@@ -1,0 +1,134 @@
+<extend name="public:Layout" />
+<block name="style">
+  <load href="__PUBLIC__/Admin/vendor/datatables-colvis/css/dataTables.colVis.css" />
+  <load href="__PUBLIC__/Admin/vendor/datatables/media/css/dataTables.bootstrap.css" />
+  <load href="__PUBLIC__/Admin/vendor/dataTables.fontAwesome/index.css" />
+  <load href="__PUBLIC__/Admin/vendor/sweetalert/dist/sweetalert.css" />
+  <load href="__PUBLIC__/Admin/vendor/eonasdan-bootstrap-datetimepicker/build/css/bootstrap-datetimepicker.min.css" />
+  <load href="__PUBLIC__/Admin/css/zy.css" />
+  <!-- =============== BOOTSTRAP STYLES ===============-->
+  <load href="__PUBLIC__/Admin/css/bootstrap.css" id="bscss" />
+  <!-- =============== APP STYLES ===============-->
+</block>
+<block name="content">
+  <div class="tpl-content-wrapper">
+    <div class="tpl-content-page-title">
+      中国人寿保险公司
+    </div>
+    <ol class="am-breadcrumb">
+      <li><a href="#" class="am-icon-home">首页</a></li>
+      <li><a href="#">合同详情浏览</a></li>
+    </ol>
+    <div class="container-fluid">
+      <div class="row">
+        <div class="col-lg-12">
+          <div class="panel panel-default">
+            <div class="panel-body">
+              <table id="datatable" class="table table-striped table-hover">
+                <thead>
+                  <tr>
+                    <th class="col-1">编号</th>
+                    <th class="col-4">公司名</th>
+                    <th class="col-5">保险名称</th>
+                    <th class="col-2">操作</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <volist name="ins" id="in">
+                    <tr>
+                      <td>{$in.id} </td>
+                      <td>{$in.cpname}</td>
+                      <td>{$in.name}</td>
+                      <td>
+                        <a class="btn btn-xs btn-default" href="javascript:;" data-update="{$in.id}">详情 </a>&nbsp;
+                    </tr>
+                  </volist>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</block>
+<block name="script">
+  <script src="__PUBLIC__/Admin/vendor/datatables/media/js/jquery.dataTables.min.js"></script>
+  <script src="__PUBLIC__/Admin/vendor/datatables-colvis/js/dataTables.colVis.js"></script>
+  <script src="__PUBLIC__/Admin/vendor/datatables/media/js/dataTables.bootstrap.js"></script>
+  <script src="__PUBLIC__/Admin/vendor/sweetalert/dist/sweetalert.min.js"></script>
+  <script src="__PUBLIC__/Admin/vendor/moment/min/moment-with-locales.min.js"></script>
+  <script src="__PUBLIC__/Admin/vendor/eonasdan-bootstrap-datetimepicker/build/js/bootstrap-datetimepicker.min.js"></script>
+  <script>
+  $(function() {
+    //datatable初始化
+    $('#datatable').dataTable({
+      dom: 'lfrt<"table-toolbar mv-lg">p',
+      paging: true,
+      info: true,
+      autoWidth: false,
+      oLanguage: {
+        sSearch: '搜索',
+        sLengthMenu: '每页显示 _MENU_ 条记录',
+        sInfo: '第 _PAGE_ 页，共 _PAGES_ 页',
+        sZeroRecords: '没有相关记录',
+        sInfoEmpty: '0条记录',
+        sInfoFiltered: '(从 _MAX_ 条记录过滤)',
+        oPaginate: {
+          sPrevious: '上一页',
+          sNext: '下一页'
+        }
+      }
+    });
+
+
+
+    $('#downCertificate').click(function(e) {
+      $('[name="type"]').val('certificate');
+      document.forms['downloadzip'].submit();
+    });
+    $('#downReport').click(function(e) {
+      $('[name="type"]').val('report');
+      document.forms['downloadzip'].submit();
+    });
+    //导出panel
+    $('#export-panel').on('click', '[data-tool="panel-collapse"]', function() {
+      $(this).find('em').toggleClass('fa-minus').toggleClass('fa-plus');
+      $(this).parent().toggleClass('panel-heading-collapsed');
+      $(this).parent().siblings('.panel-wrapper').slideToggle(200).toggleClass('in');
+    });
+    $('#datetimepicker-start').datetimepicker({
+      icons: {
+        time: "fa fa-clock-o",
+        date: "fa fa-calendar",
+        up: "fa fa-arrow-up",
+        down: "fa fa-arrow-down"
+      },
+      format: 'YYYY-MM-DD'
+    });
+    $('#datetimepicker-end').datetimepicker({
+      icons: {
+        time: "fa fa-clock-o",
+        date: "fa fa-calendar",
+        up: "fa fa-arrow-up",
+        down: "fa fa-arrow-down"
+      },
+      format: 'YYYY-MM-DD',
+      maxDate: moment(),
+      useCurrent: false
+    });
+    $("#datetimepicker-start").on("dp.change", function(e) {
+      $("#datetimepicker-end").data("DateTimePicker").minDate(e.date);
+    });
+    $("#datetimepicker-end").on("dp.change", function(e) {
+      $("#datetimepicker-start").data("DateTimePicker").maxDate(e.date);
+    });
+    $('#datatable').on('click', '[data-update]', function() {
+      var dateId = $(this).data('update');
+      window.location.href = "/admin2/manage/ins_chart/id/" + dateId;
+    });
+
+  });
+
+  </script>
+</block>

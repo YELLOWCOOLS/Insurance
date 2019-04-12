@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  
+
+<meta name="viewport" content="width=device-width, initial-scale=1,user-scalable=no">
+
+
+</head>
+<body>
+
+
+<div id="zoom-marker-div" class="zoom-marker-div" style="visibility:hidden ;position: fixed;">
+<img class="zoom-marker-img" id="zoom-marker-img" alt="..." name="viewArea"  draggable="false"/>
+<button id='hidbt' class="weui-btn weui-btn_plain-primary">确定</button>
+</div>
+
+
+
+  <div id="zoom-marker-div" class="zoom-marker-div" style="visibility:hidden ;position: fixed;">
+    <img class="zoom-marker-img" id="zoom-marker-img" alt="..." name="viewArea" draggable="false" />
+    <button id='hidbt' class="weui-btn weui-btn_plain-primary">确定</button>
+  </div>
+ 
+  <div class="page__bd">
+    <form id="fm" action="/home/yue/dochange/id/{$room.id}" method="POST">
+      <div class="weui-cells weui-cells_form">
+        <div class="weui-cell weui-cell_select weui-cell_select-after">
+          <div class="weui-cell__hd">
+            <label for="" class="weui-label">约定地点</label>
+          </div>
+          <if condition="$room.type eq 0">
+            <div class="weui-cell__bd">
+              <select class='weui-select flse' name="place" >
+
+                <option value="1">1楼</option>
+                <option value="2">2楼</option>
+                <option value="3">3楼</option>
+                <option value="4">4楼</option>
+
+              </select>
+            </div>
+            <else />   <input class="weui-input" type="text" name="place" placeholder="请输入地点描述">
+            </if>
+            <else>
+            
+
+        </div>
+        <a href="javascript:" class="mapbt weui-btn weui-btn_mini weui-btn_default">在地图上标记</a>
+       
+        <div class="weui-btn-area">
+          <div class="weui-cell__hd">
+            <a class="weui-btn weui-btn_primary" href="javascript:" id="submit">确定修改</a>
+          </div>
+        </div>
+         <input class="px" type="text" name="px" style="visibility:hidden">
+        <input class="py" type="text" name="py" style="visibility:hidden">
+    </form>
+    </div>
+<script src="/Public/Home/js/jquery-1.11.3.min.js"></script>
+<script src="/Public/Home/js/jquery.mousewheel.min.js"></script>
+<script src="/Public/Home/js/require/iscroll.js"></script>
+<script src="/Public/Home/js/datePicker.js"></script>
+<script src="/Public/Home/js/hammer.min.js"></script>
+<script src="/Public/Home/js/zoom-marker.js"></script>
+    <link rel="stylesheet" href="//cdn.bootcss.com/weui/1.1.2/style/weui.min.css">
+<link rel="stylesheet" href="/Public/Home/css/zoom-marker.css">
+<link rel="stylesheet" href="/Public/Home/css/datePicker.css">
+  <link rel="stylesheet" href="/Public/Home/css/yue/newroom.css">
+   
+  <script type="text/javascript">
+
+$(document).ready(function () {
+   $('.flse').change(function(){
+  var tmp=$('.flse').val();
+  if(tmp==1){
+    $('#zoom-marker-img').zoomMarker_LoadImage("/Public/Home/img/yue/1.png");
+  }
+  if(tmp==2){
+    $('#zoom-marker-img').zoomMarker_LoadImage("/Public/Home/img/yue/2.png");
+  }
+  if(tmp==3){
+    $('#zoom-marker-img').zoomMarker_LoadImage("/Public/Home/img/yue/3.png");
+  }
+  if(tmp==4){
+    $('#zoom-marker-img').zoomMarker_LoadImage("/Public/Home/img/yue/4.png");
+  }
+});
+
+    /******************* init navigator button, no need for users' initialization *********************/
+    $("#submit").click(function(event) {
+      $("#fm").submit();
+    });
+    $(".mapbt").click(function(event) {
+     $("#zoom-marker-div").attr('style','position: fixed; ');
+    });
+    $("hidbt").click(function(event) {
+     $("#zoom-marker-div").attr('style',' visibility:hidden ;position: fixed;');
+    });
+    // handle "TAP" event and add marker to image
+    $("#zoom-marker-img").on("zoom_marker_mouse_click", function(event, position){
+      $('#zoom-marker-img').zoomMarker_CleanMarker();
+        $('.px').val(position.x);
+        $('.py').val(position.y);
+      
+        $('#zoom-marker-img').zoomMarker_AddMarker({
+
+            src:"/Public/Home/img/yue/marker.svg",
+            x:position.x,
+            y:position.y,
+            size:30,
+            
+            hint:{value:" ", style:{color:"#ffffff", left:"10px"}}
+        });
+       
+    });
+
+  
+
+    if({$room['type']}==0){
+      var imgurl="/Public/Home/img/yue/1.png";
+    }else{
+       var imgurl="/Public/Home/img/yue/schoolmap.png";
+    }
+    $('#zoom-marker-img').zoomMarker({
+        src: imgurl,
+        rate: 0.2,
+        width: 400,
+        max: 1000,
+        markers:[
+            {src:"/Public/Home/img/yue/marker.svg", x:{$room['x']}, y:{$room['y']}}
+            ]
+    });
+   
+})
+
+</script>
+</body>

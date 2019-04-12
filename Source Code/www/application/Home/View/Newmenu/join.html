@@ -1,0 +1,32 @@
+<extend name="Public:newlayout" />
+<block name="content">
+  <div class="page__bd" style="margin-bottom: 40px">
+    <div class="weui-panel weui-panel_access">
+      <div class="weui-panel__bd">
+        <div class="weui-cells weui-cells_form">
+          <div class="weui-cell__hd">
+            <label for="" class="weui-label">可加入房间</label>
+          </div>
+          <volist name="rooms" id="room">
+            <div class="weui-media-box weui-media-box_appmsg">
+              <div class="weui-media-box__hd">
+                <img class="weui-media-box__thumb" src="/Public/Home/img/mytrade/heart-5.png">
+              </div>
+              <div class="weui-media-box__bd">
+                <h4 class="weui-media-box__title">房间名：{$room.roomname}</h4>
+                <p class="weui-media-box__desc">约定地点：{$room.place}
+                  <if condition="$room.type eq 0">
+                    楼
+                  </if>
+                </p>
+                <p class="weui-media-box__desc">人数:{$room.nownum}/{$room.maxnum}</p>
+                <p class="weui-media-box__desc">开始时间:{$room.starttime}</p>
+              </div> <a href="/home/newmenu/guan_ma/type/0/id/{$room.id}" class="weui-btn weui-btn_plain-primary but">详情</a>
+            </div>
+          </volist>
+        </div>
+      </div>
+      <div class="te" id='tex' style="display: none"></div>
+    </div>
+  </div>
+</block>

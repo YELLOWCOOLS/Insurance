@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="renderer" content="webkit" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0,user-scalable=0,uc-fitscreen=yes" />
+		<meta name="apple-mobile-web-app-capable" content="yes" />
+		<meta name="apple-mobile-web-app-status-bar-style" content="black" />
+		<meta name="format-detection" content="telephone=no" />
+		<title>miniMobile</title>
+		<meta name="keywords" content="miniMobile的demo" />
+		<meta name="description" content="miniMobile是一个简单易用的移动框架！" />
+		<!-- ui css、js -->
+		<link rel="stylesheet" type="text/css" href="/Public/Home/Newmenu/css/user.css"/>
+		<link rel="stylesheet" type="text/css" href="/Public/Home/Newmenu/css/miniMobile.css"/>
+		<script type="text/javascript" src="/Public/Home/Newmenu/js/zepto.min.js"></script>
+		<script type="text/javascript" src="/Public/Home/Newmenu/js/miniMobile.js"></script>
+		<!-- 字体图标 -->
+		<link rel="stylesheet" type="text/css" href="/Public/Home/Newmenu/plugins/fonticon/iconfont.css" />
+		<!-- animate.css -->
+		<link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.5.2/animate.css" />
+	</head>
+
+	<body class="fadeIn animated">
+		<header class="ui-header clearfix w75 h8 f46 pl3 pr3 color8 bg-color-primary t-c o-h">
+			<div class="ui-header-l fl w5">
+				<a href="index.html" class="icon color8 iconfont icon-home_light"></a>
+			</div>
+			<div class="ui-header-c fl f30 w59">
+				建议列表
+			</div>
+			<div class="ui-header-r fr w5">
+				<i class="icon iconfont icon-phone"></i>
+			</div>
+		</header>
+		<div class="comment w71 m2 f34 color3 clearfix">
+			
+			<div class="list clearfix mt5 mb5">
+				<div class="w9 fl">
+					<img src="/Public/Home/Newmenu/img/user.jpg" class="w9 h9 radius5" />
+				</div>
+				<div class="w61 pl2 fl">
+					<p class="f40 color-primary">某不知名的男人</p>
+					<p class="f28 color4 pb1">用户</p>
+					<div class="list-text o-h">
+						<p>2017年12月1号的39号订单，去取的时候没有取到，后续也没有给我推送消息了。请问我第二次还能什么时候取</p>
+						<p>顺风员工02</p>
+						<!--<div class="list-shadow"></div>-->
+					</div>
+					<!--<p class="list-alltext color-primary">全文</p>-->
+					<div class="list-btnbox clearfix color4 f28 pt2">
+						<font class="color5">17.12.2</font>
+						
+					</div>
+					<div class="bg-color6 p2 mt2 f30">
+						
+						<p class="pt1 pb1">
+							<span class="color-primary">顺风员工02</span>请于20点到21点前来，地点未变。
+						</p>
+						<p class="pt1 pb1">
+							<span class="color-primary">顺风员工01</span>十分抱歉，给您的生活带来了不便，如第一天没有取到货品，请第二天前往或与送货员协商
+							
+						</p>
+					</div>
+				</div>
+			</div>
+		</div>
+		<style type="text/css">
+			.list-btnbox {
+				line-height: 2em;
+			}
+			
+			.list-btnbox span {
+				border: 1px solid #ccc;
+				line-height: 1em;
+				vertical-align: middle;
+				padding: 0.1rem 0.2rem;
+				border-radius: 0.25rem;
+				cursor: pointer;
+			}
+			.list-btnbox span:hover,.list-btnbox span:active{
+				background: #1ab394;
+				color: #fff;
+				border-color: #1ab394;
+			}
+			.list-btnbox span i {
+				vertical-align: middle;
+			}
+			
+			.list-text {
+				position: relative;
+				max-height: 2.6rem;
+			}
+			
+			.list-alltext {
+				cursor: pointer;
+			}
+			
+			.list-shadow {
+				position: absolute;
+				width: 100%;
+				height: 100%;
+				left: 0;
+				bottom: 0;
+				box-shadow: 0 -40px 40px -20px #fff inset;
+			}
+		</style>
+		<script type="text/javascript">
+			$(".list-alltext").click(function() {
+				$(this).hide().prev().css({
+					'max-height': 'none'
+				}).children('.list-shadow').hide();
+			})
+		</script>
+		<!-- 底部导航 -->
+		<nav class="demo-bottomNav mt6 w75 h12 pt1 t-c f28 bg-color8 o-h clearfix">
+			<div class="w15 fl">
+				<a href="index.html">
+					<i class="f46 icon iconfont icon-home_light"></i>
+					<p>首页</p>
+				</a>
+			</div>
+			<div class="w15 fl">
+				<a href="/home/Newmenu/listbutton">
+					<i class="f46 icon iconfont icon-comment"></i>
+					<p>消息</p>
+				</a>
+			</div>
+			<div class="w15 fl">
+				<a href="list.html">
+					<i class="f46 icon iconfont icon-rank"></i>
+					<p>活动</p>
+				</a>
+			</div>
+			<div class="w15 fl">
+				<a href="comment.html">
+					<i class="f46 icon iconfont icon-list"></i>
+					<p>投诉</p>
+				</a>
+			</div>
+			<div class="w15 fl">
+				<a href="my.html">
+					<i class="f46 icon iconfont icon-servicefill"></i>
+					<p>我的</p>
+				</a>
+			</div>
+		</nav>
+		<style type="text/css">
+			.demo-bottomNav {
+				line-height: 1.8em;
+				border-top:1px solid #F1F1F1;
+			}
+			
+			.demo-bottomNav a {
+				display: block;
+				width: 100%;
+				height: 100%;
+			}
+		</style>
+	</body>
+
+</html>

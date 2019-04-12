@@ -1,0 +1,147 @@
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1,user-scalable=no">
+  <meta name="description" content="">
+  <meta name="keywords" content="">
+  <title>智能保险</title>
+  <!-- =============== VENDOR STYLES ===============-->
+  <!-- FONT AWESOME-->
+ 
+  <link rel="stylesheet" href="https://unpkg.com/element-ui/lib/theme-chalk/index.css">
+<!--   <link rel="stylesheet" href="__PUBLIC__/Cmm/css/mobilebone.animate.css">
+  <link rel="stylesheet" href="__PUBLIC__/Cmm/css/mobilebone.css">
+  <meta name="hotcss">
+  <load href="__PUBLIC__/Home/js/hotcss.js" /> -->
+  <script src="https://cdn.jsdelivr.net/npm/vue"></script>
+  <script src="__PUBLIC__/Cmm/js/mobilebone.js"></script>
+  <link rel="stylesheet" href="/Public/Home/css/datePicker.css">
+  <load href="__PUBLIC__/Cmm/css/result.css" />
+</head>
+<body>
+	
+
+<div id="Analysis">
+	<header  class="header">
+		
+		<h1 >测试结果</h1>
+	</header>
+	<div class="content">
+		<div  class="body">
+			<div  class="el-row">
+				<div class="el-col el-col-7">
+					<div class="avatar" id="head">
+						<div  class="img factive" v-bind:class="{mactive:head }"></div>
+					</div>
+				</div>
+				<div  class="el-col el-col-17"
+					style="padding-left: 10px; line-height: 25px;">
+					<div >您的保险配置保险方案</div>
+					<div >保费：约{$income*1500}/年</div>
+					<div >总收入：{$income}万/年</div>
+				
+				</div>
+			</div>
+			<hr >
+			<div  class="el-row">
+				<div  class="el-col el-col-14">
+					<div >未来20年内，您身边的100个同龄人中</div>
+					<div  style="font-size: 20px;">
+						重疾或身故的有<span style="color: rgb(32, 160, 255);">{$num}</span>人
+					</div>
+					<div style="color: lightgrey;">该数据来源于中国人身保险业经验生命表</div>
+				</div>
+				<div  class="el-col el-col-10">
+					<div class="icon-future">{$num}人</div>
+				</div>
+			</div>
+			<hr >
+			<div  class="feature-title">精算师推荐保障计划</div>
+			<div class="el-row">
+				<div  class="el-col el-col-6">
+					<div class="feature-icon icon-heart"></div>
+					<div class="feature-num">{$shou}万</div>
+					<div class="feature-text">寿险保障</div>
+				</div>
+				<div  class="el-col el-col-6">
+					<div class="feature-icon icon-lung"></div>
+					<div data-v-cf0105ec="" class="feature-num">{$zhongji}万</div>
+					<div data-v-cf0105ec="" class="feature-text">重疾保障</div>
+				</div>
+				<div  class="el-col el-col-6">
+					<div data-v-cf0105ec="" class="feature-icon icon-hospital"></div>
+					<div  class="feature-num">最高100万</div>
+					<div data-v-cf0105ec="" class="feature-text">医疗保障</div>
+				</div>
+				<div  class="el-col el-col-6">
+					<div  class="feature-icon icon-umbrella"></div>
+					<div  class="feature-num">最高{$acci}万</div>
+					<div  class="feature-text">意外保障</div>
+				</div>
+			</div>
+			<hr >
+
+			<div  style="text-align: center;">根据相似用户推荐</div>
+			
+			<div>{$tins.name}</div>
+			<volist name="tins" id="ins">
+			<div  class="product-row el-row">
+				<a  href="/cmm/comm/insview/id/{$ins.id}"  class="product">
+						<div class="el-col el-col-3">
+						<div class="product-index">0</div>
+						</div>
+					<div  class="el-col el-col-20">
+						<div  class="product-name">{$ins.name}</div>
+						<div  class="product-desc">{$ins.cpname}</div>
+						<div  class="product-desc">{$ins.tag1}+{$ins.tag2}+保障{$ins.numofill}种疾病</div>
+					</div>
+					<div  class="el-col el-col-1">
+						<span  class="product-arrow"><i
+							 class="el-icon-arrow-right"></i></span>
+					</div></a>
+			</div>
+			</volist>
+	
+
+			<div  style="text-align: center;">精算师推荐产品</div>
+			
+			<volist name="insus" id="ins">
+
+			<div  class="product-row el-row">
+				<a  href="/cmm/comm/insview/id/{$ins.id}"  class="product">
+						<div class="el-col el-col-3">
+						<div class="product-index">{$i}</div>
+						</div>
+					<div  class="el-col el-col-20">
+						<div  class="product-name">{$ins.name}</div>
+						<div  class="product-desc">{$ins.cpname}</div>
+						<div  class="product-desc">{$ins.tag1}+{$ins.tag2}+保障{$ins.numofill}种疾病</div>
+					</div>
+					<div  class="el-col el-col-1">
+						<span  class="product-arrow"><i
+							 class="el-icon-arrow-right"></i></span>
+					</div></a>
+			</div>
+			</volist>
+		</div>
+	</div>
+</div>
+
+  <script src="/Public/Home/js/require/iscroll.js"></script>
+  <script src="__PUBLIC__/Admin/vendor/jquery/dist/jquery.js"></script>
+  <script src="https://unpkg.com/element-ui/lib/index.js"></script>
+  <script src="http://res.wx.qq.com/open/js/jweixin-1.2.0.js" type="text/javascript "></script>
+  <script src="/Public/Home/js/datePicker.js"></script>
+  <script src="__PUBLIC__/Cmm/js/result.js"></script>
+  <script >
+  	var page=new Vue({
+	el:'#head',
+	data:{
+    head:{$head}
+	},
+
+});
+
+  </script>
+</body>

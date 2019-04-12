@@ -1,0 +1,300 @@
+<extend name="Public:layout" />
+
+
+<block name="content">
+    <div class="page__bd">
+        <div class="weui-cells__title title">注册信息</div>
+
+        <form action="/home/account/doRegister" enctype="multipart/form-data" method="POST">
+            <div class="page-1">
+              <div class="weui-cells weui-cells_form">
+                <div class="weui-cell ">
+                    <div class="weui-cell__hd ">
+                        <label for="" class="weui-label">姓名</label>
+                    </div>
+                    <div class="weui-cell__bd ">
+                        <input class="weui-input" type="text" placeholder="请输入姓名" name="username">
+                    </div>
+                </div>
+
+                <div class="weui-cell ">
+                    <div class="weui-cell__hd">
+                        <label for="" class="weui-label">学号</label>
+                    </div>
+                    <div class="weui-cell__bd">
+                        <input class="weui-input" type="phone" name="stuid" placeholder="请输入学号">
+                    </div>
+                </div>
+
+                    <div class="weui-cell weui-cell_vcode">
+                        <div class="weui-cell__hd">
+                            <label class="weui-label">手机号</label>
+                        </div>
+                        <div class="weui-cell__bd">
+                            <input class="weui-input" type="tel" placeholder="请输入手机号" name="phone">
+                        </div>
+                        <div class="weui-cell__ft">
+                            <button type="button" class="weui-vcode-btn getCode-btnphone"  id="getCode" >获取验证码</button>
+                        </div>
+                    </div>
+                
+                <div class="weui-cell">
+                    <div class="weui-cell__hd">
+                        <label class="weui-label">验证码</label>
+                    </div>
+                    <div class="weui-cell__bd">
+                        <input class="weui-input" type="tel" id="code-phone" name='code' placeholder="请输入验证码">
+                    </div>
+                </div>
+               
+                <div class="weui-cell " style="padding: 0 15px ">
+                    <div class="weui-cell__hd">
+                    <label for="" class="weui-label">性别</label>
+                    </div>
+                    <div class="weui-cells weui-cells_radio" style="margin:0px ;width:100%" >
+                        <label class="weui-cell weui-check__label" for="x11">
+                            <div class="weui-cell__bd">
+                                <p>男</p>
+                            </div>
+                            <div class="weui-cell__ft">
+                                <input type="radio" class="weui-check" name="sex" id="x11" value='男'>
+                                <span class="weui-icon-checked"></span>
+                            </div>
+                        </label>
+                        <label class="weui-cell weui-check__label" for="x12">
+
+                            <div class="weui-cell__bd">
+                                <p>女</p>
+                            </div>
+                            <div class="weui-cell__ft">
+                                <input type="radio" name="sex" class="weui-check" id="x12" checked="checked" value='女'>
+                                <span class="weui-icon-checked"></span>
+                            </div>
+                        </label>
+                    </div>  
+                 </div>
+
+
+                <div class="weui-cell weui-cell_select weui-cell_select-after">
+                    <div class="weui-cell__hd">
+                        <label for="" class="weui-label">宿舍地址</label>
+                    </div>
+                    <div class="weui-cell__bd">
+                      <select class='weui-select' id='year-input' name="address">    
+                          <option value="第1宿舍">第1宿舍</option>
+                          <option value="第2宿舍">第2宿舍</option>
+                          <option value="南3宿舍">南3宿舍</option>
+                          <option value="北3宿舍">北3宿舍</option>
+                          <option value="南4宿舍">南4宿舍</option>
+                          <option value="北4宿舍">北4宿舍</option>
+                          <option value="第5宿舍">第5宿舍</option>
+                          <option value="第6宿舍">第6宿舍</option>
+                          <option value="第7宿舍">第7宿舍</option>
+                          <option value="第8宿舍">第8宿舍</option>
+                          <option value="女生公寓">女生公寓</option>
+                          <option value="静思园">静思园</option>
+                          <option value="宁远楼">宁远楼</option>
+                          <option value="第19宿舍">第19宿舍</option>
+                          <option value="第20宿舍">第20宿舍</option>
+                          <option value="武川寺">武川寺</option>
+                          <option value="国权北路研究生公寓">国权北路研究生公寓</option>
+                      </select>    
+                  </div>
+              </div>
+              </div>
+    
+           
+         
+
+          <div class="weui-btn-area">
+             <div class="weui-cell__hd">
+                 <a class="weui-btn weui-btn_primary" href="javascript:" id="register">注册</a>
+             </div>
+         </div>
+
+
+ </form>
+</div>
+
+
+
+
+<div class="js_dialog" id="iosDialog2" style="display: none;">
+    <div class="weui-mask"></div>
+    <div class="weui-dialog">
+        <div class="weui-dialog__bd" id='errorMsg'></div>
+        <div class="weui-dialog__ft">
+            <a href="javascript:;" id="dialog2" class="weui-dialog__btn weui-dialog__btn_primary_confirm">知道了</a>
+        </div>
+    </div>
+</div>
+
+<!-- <div class="js_dialog" id="iosDialog1" style="display: none">
+    <div class="weui-mask"></div>
+    <div class="weui-dialog">
+        <div class="weui-dialog__hd"><strong class="weui-dialog__title">提示</strong></div>
+        <div class="weui-dialog__bd">您的信息与数据库不吻合或信息丢失，请确认信息。选择是否继续使用该信息注册</div>
+        <div class="weui-dialog__ft">
+            <a href="javascript:;" class="weui-dialog__btn weui-dialog__btn_default">取消</a>
+            <a href="javascript:;" class="weui-dialog__btn weui-dialog__btn_primary">继续注册</a>
+        </div>
+    </div>
+</div>
+</div>
+ -->
+</block>
+<block name="script">
+
+<link rel="stylesheet" type="text/css" href="__PUBLIC__/Home/css/register.css">
+
+<script type="text/javascript"> 
+
+    
+
+
+    $('.weui-dialog__btn_default').on('click', function(){
+    $('#iosDialog1').hide();
+});
+    $('.weui-dialog__btn_primary').on('click', function(){
+    $('#iosDialog1').hide();
+});
+    $('#dialog2').on('click',function(){
+    $('#iosDialog2').hide();
+})
+
+
+   $(function(){
+    var $iosDialog1 = $('#iosDialog1');
+    $('#showIOSDialog1').on('click', function(){
+        $iosDialog1.fadeIn(200);
+    });
+});
+
+   var showDialog2=function(msg){
+    $('#errorMsg').text(msg);
+    $('#iosDialog2').show();
+}
+
+
+
+var getCode =function(type,cont){
+    if(!cont){
+        showDialog2('字段不能为空'+cont);
+        return false;
+    }
+
+    $.post("/home/account/sendCaptcha",
+     {   addr:cont,
+         type:type,
+     }
+     ,function(msg){
+        if (msg==1) {
+
+        }else if(msg==0){
+         showDialog2('请确认信息的正确性,请稍后再试');
+     }
+ })
+
+}
+
+
+function codebreak(thisBtn)
+{ 
+    thisBtn.addClass('weui_btn_disabled');
+    var count = 60;
+    thisBtn.attr('disabled','disabled');
+
+    var timer = setInterval(function() {
+
+
+        if (!count) {
+            count = 60;
+            thisBtn.removeClass('weui_btn_disabled');
+            thisBtn.html('获取验证码');
+            thisBtn.attr('disabled',false);
+            clearInterval(timer);
+        } else {
+
+            thisBtn.html((count--) + 's后重新获取');
+
+        }
+    }, 1000);
+
+}
+
+
+// $('#getCode-email').click(function(){
+//     var btn=$('.getCode-btnmail');
+//     var type="email";
+//     var addr=$('[name="email"]').val();
+
+//     if(!/^([a-zA-Z0-9]+[_|\_|\.]?)*[a-zA-Z0-9]+@([a-zA-Z0-9]+[_|\_|\.]?)*[a-zA-Z0-9]+\.[a-zA-Z]{2,3}$/.test(addr)){
+//         showDialog2('邮箱格式错误');
+
+
+
+//     }else{
+
+//     codebreak(btn);
+//     getCode(type,addr);
+//     }
+// })
+
+
+
+$('#getCode').click(function(){
+
+    var btn=$('.getCode-btnphone');
+    var type="phone";
+    var addr=$('[name="phone"]').val();
+    if(!/^1[34578]\d{9}$/.test(addr)){
+        showDialog2('电话号码格式错误');
+        return false;
+    }
+    codebreak(btn);
+    getCode(type,addr);
+})
+
+
+$('#register').click(function(){
+    var phone=$('[name="phone"]').val();
+    var name=$('[name="username"]').val();
+    var stuid=$('[name="stuid"]').val();
+    var code=$('[name="code"]').val();
+    var sex=$('[name="sex"]').val();
+    var address=$('[name="address"]').val();
+    if(!name&&!stuid&&!code&&!sex&&!address){
+        showDialog2('字段不能为空');
+        return false;
+    }
+    var addr=$('[name="phone"]').val();
+    if(!/^1[34578]\d{9}$/.test(addr)){
+        showDialog2('电话号码格式错误');
+        return false;
+    }
+
+    $.post("/home/account/verifyCaptcha",
+     {  
+      addr:phone,
+        code:code
+      
+      }
+        ,function(msg){
+         if (msg==1) {
+          $('form').submit();
+      }else if(msg==0){
+        showDialog2('验证码错误');
+    }
+});
+  
+   
+});
+
+$('.weui-select').change(function(event) {
+   $(this).attr('style','color:black')
+});
+
+</script>
+
+
+</block>

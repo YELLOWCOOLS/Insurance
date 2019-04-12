@@ -1,0 +1,21 @@
+.weui-select{
+	color: #a9a9a9;
+	padding: 0px;
+	
+}
+.switch{
+	display: flex;
+	justify-content: flex-end;
+
+}
+.switchbtn{
+	color:#a9a9a9 ;
+}
+
+.erweima{
+	display: flex;
+	justify-content: center;
+}
+.title{
+	text-align:center;
+}

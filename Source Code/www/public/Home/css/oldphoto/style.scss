@@ -1,0 +1,209 @@
+@import 'px2rem.scss';
+$designWidth: 750;
+
+html {
+    font-family: sans-serif;
+    -webkit-user-select: none;
+    user-select: none;
+    -webkit-text-size-adjust: 100%;
+    -ms-text-size-adjust: 100%
+}
+
+* {
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
+    -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+}
+
+html,
+body {
+    width: 100%;
+    height: 100%;
+}
+
+body {
+    position: relative;
+    width: px2rem(750);
+    margin: 0 auto;
+}
+
+.page {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    background-position: center;
+}
+
+
+.page-1 {
+    background: #fef44c url(./img/bg.jpg) no-repeat;
+    background-size: cover;
+}
+
+.page-2 {
+    background: #fef44c url(./img/bg-2.jpg) no-repeat;
+    background-size: cover;
+}
+
+#img-oh {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: px2rem(260);
+    height: px2rem(265);
+    background: url(./img/oh.png) no-repeat;
+    background-size: cover;
+}
+
+#img-title {
+    width: px2rem(560);
+    height: px2rem(280);
+    margin-top: px2rem(140);
+    margin-left: auto;
+    margin-right: auto;
+    background: url(./img/title.png) no-repeat;
+    background-size: cover;
+}
+
+#img-phone {
+    width: px2rem(720);
+    height: px2rem(420);
+    background: url(./img/phone.png) no-repeat;
+    background-size: cover;
+}
+
+#img-question-mark {
+    width: px2rem(189);
+    height: px2rem(248);
+    margin-top: px2rem(-60);
+    margin-left: px2rem(256);
+    background: url(./img/question-mark.png) no-repeat;
+    background-size: cover;
+}
+
+#upload {
+    position: absolute;
+    left: px2rem(122);
+    bottom: px2rem(20);
+    width: px2rem(510);
+    height: px2rem(162);
+    background: url(./img/upload.png) no-repeat;
+    background-size: cover;
+}
+
+#stu-name {
+    margin-top: px2rem(60);
+    font-size: px2rem(100px);
+    text-align: center;
+    font-weight: 600;
+}
+
+#class-name {
+    margin-top: px2rem(15);
+    font-size: px2rem(36px);
+    text-align: center;
+    font-weight: 400;
+}
+
+.image-container {
+    margin-top: px2rem(30);
+    width: 100%;
+    display: flex;
+    img {
+        display: block;
+        flex: 1;
+        height: px2rem(515);
+        object-fit: cover;
+    }
+}
+
+.year-container {
+    margin-top: px2rem(15);
+    display: flex;
+    .year {
+        flex: 1;
+        font-size: px2rem(40px);
+        text-align: center;
+    }
+}
+
+#emoji {
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    width: px2rem(750);
+    height: px2rem(330);
+    background-size: cover;
+}
+
+#support {
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    width: px2rem(750);
+    height: px2rem(43);
+    background: url(./img/support.png) no-repeat;
+    background-size: cover;
+}
+#share {
+    position: absolute;
+    right:  px2rem(-37);
+    top: 0;
+    width: px2rem(317);
+    height: px2rem(110);
+    background: url(./img/share.png) no-repeat;
+    background-size: cover;
+}
+@for $i from 1 through 6 {
+    .emoji-#{$i} {
+        background: url(./img/emoji-#{$i}.png) no-repeat;
+    }
+}
+
+
+/* animation sets */
+
+.delay-one {
+    -webkit-animation-delay: .5s;
+    /* Chrome, Safari, Opera */
+    animation-delay: .5s;
+}
+
+.delay-two {
+    -webkit-animation-delay: 1s;
+    /* Chrome, Safari, Opera */
+    animation-delay: 1s;
+}
+
+.delay-three {
+    -webkit-animation-delay: 1.5s;
+    /* Chrome, Safari, Opera */
+    animation-delay: 1.5s;
+}
+
+.delay-four {
+    -webkit-animation-delay: 2s;
+    /* Chrome, Safari, Opera */
+    animation-delay: 2s;
+}
+
+.delay-five {
+    -webkit-animation-delay: 2.5s;
+    /* Chrome, Safari, Opera */
+    animation-delay: 2.5s;
+}
+
+.delay-six {
+    -webkit-animation-delay: 3s;
+    /* Chrome, Safari, Opera */
+    animation-delay: 3s;
+}
+
+.delay-seven {
+    -webkit-animation-delay: 3.5s;
+    /* Chrome, Safari, Opera */
+    animation-delay: 3.5s;
+}
