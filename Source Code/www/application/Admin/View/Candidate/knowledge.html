@@ -1,0 +1,114 @@
+<extend name="Public:menuLayout" />
+<block name="title">查询信息</block>
+<block name="content">
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col-lg-6">
+        <div class="panel panel-default panel-flat">
+          <div class="panel-body">
+            <form action="/admin/candidate/search" method="POST">
+              <div class="form-group has-feedback">
+                <label class="text-muted">保险名</label>
+                <input placeholder="请输入保险名(选填)" name="name" autocomplete="off" class="form-control" </div>
+                <div class="form-group has-feedback">
+                  <label class="text-muted">保险id</label>
+                  <input placeholder="请输入保险id(选填)" name="id" autocomplete="off" class="form-control">
+                </div>
+                <button id="submit1" class="btn btn-danger btn-block">查询图谱
+                </button>
+            </form>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div id="conta">
+    </div>
+</block>
+<block name="script">
+  <script src="https://d3js.org/d3.v5.min.js"></script>
+  <script>
+  var width = 600,
+    height = 600;
+  var img_w = 77,
+    img_h = 90;
+  var svg = d3.select("#conta").append("svg")
+    .attr("width", width)
+    .attr("height", height)
+
+
+
+  d3.json("date",function(error,root) {
+   if (error)  {return console.log(error)}  
+    console.log(root);  
+  
+    var date=$.ajax({url:"date",async:false});
+    console.log(date);
+   
+    //定义力学图的布局  
+    var force = d3.layout.force()
+      .nodes(date.nodes)
+      .links(date.edges)
+      .size([width, height])
+      .linkDistance(200)
+      .charge(-1500)
+      .start();
+    //绘制连接线  
+    var edges_line = svg.selectAll("line")
+      .data(date.edges)
+      .enter()
+      .append("line")
+      .style("stroke", "#ccc")
+      .style("stroke_width", 1)
+    var edges_text = svg.selectAll(".linetext")
+      .data(date.edges)
+      .enter()
+      .append("text")
+      .attr("class", "linetext")
+      .text(function(d) { return d.relation; })
+    
+
+    var node_dx = -20,
+      node_dy = 20;
+    var node_text = svg.selectAll(".nodetext")
+      .data(date.nodes)
+      .enter()
+      .append("text")
+      .attr("class", "nodetext")
+      .attr("dx", node_dx)
+      .attr("dy", node_dy)
+      .text(function(d) { return d.name })
+    //运动刷新  
+    force.on("tick", function() {
+      //限制结点的边界  
+      date.nodes.forEach(function(d, i) {
+        d.x = d.x - img_w / 2 < 0 ? img_w : d.x;
+        d.x = d.x + img_w / 2 > width ? width - img_w / 2 : d.x;
+        d.y = d.y - img_h / 2 < 0 ? img_h / 2 : d.y;
+        d.y = d.y + img_h / 2 > height ? height - img_h / 2 : d.y;
+      })
+      //刷新连接线的位置  
+      edges_line.attr("x1", function(d) { return d.source.x; })
+        .attr("y1", function(d) { return d.source.y; })
+        .attr("x2", function(d) { return d.target.x; })
+        .attr("y2", function(d) { return d.target.y; })
+      //刷新连接线上的文字位置  
+      edges_text.attr("x", function(d) { return (d.source.x + d.target.x) / 2; })
+        .attr("y", function(d) { return (d.source.y + d.target.y) / 2; });
+      //刷新结点图片位置  
+      node_img.attr("x", function(d) { return d.x - img_w / 2; })
+        .attr("y", function(d) { return d.y - img_h / 2 })
+      //刷新结点图片位置  
+      node_text.attr("x", function(d) { return d.x })
+        .attr("y", function(d) { return d.y + img_w / 2 })
+
+    })
+    //拖拽开始后设定被拖拽对象为固定  
+    var drag = force.drag()
+      .on("dragstart", function(d) {
+        d.fixed = true;
+      })
+  })
+
+  </script>
+</block>

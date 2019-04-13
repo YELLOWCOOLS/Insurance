@@ -1,0 +1,176 @@
+<extend name="Public:newlayout" />
+
+<block name="content">
+        <div class="page__hd" >
+        <h1 class="page__title">订单详情</h1>
+    <div class="weui-cell weui-cell_access">
+                <div class="weui-cell__bd">
+                    <span style="vertical-align: middle">发起人</span>
+               
+                </div>
+                <div class="weui-cell__ft">
+                {$record.initiatorid}
+                </div>
+     </div>
+       
+    </div>
+    <div class="page_bd" style="margin-bottom: 100px">
+    <div class="weui-cells__title">快递信息</div>
+      <div class="weui-cell weui-cell_access">
+                <div class="weui-cell__bd">
+                    <span style="vertical-align: middle">状态</span>
+         
+                </div>
+                <div class="weui-cell__ft">
+                   <if condition="$record.state eq 0">
+                      未接单
+                     
+                   </if>
+                   <if condition="$record.state eq 1">
+                   正在途中
+                   </if>
+                   <if condition="$record.state eq 2">
+                  已完成
+                   </if>
+                    <if condition="$record.state eq 3">
+                  等待您的领取
+                   </if>
+                   
+
+                </div>
+      </div>
+      <if condition="$record.state eq 3">
+                  <div class="weui-cell weui-cell_access">
+                <div class="weui-cell__bd">
+                    <span style="vertical-align: middle">领取地点</span>
+                   
+                </div>
+                <div class="weui-cell__ft">
+                   {$user.place}
+                </div>
+      </div>
+      </if>
+      <div class="weui-cell weui-cell_access">
+                <div class="weui-cell__bd">
+                    <span style="vertical-align: middle">订单号</span>
+                   
+                </div>
+                <div class="weui-cell__ft">
+                   {$record.recordid}
+                </div>
+      </div>
+      <div class="weui-cell weui-cell_access">
+                <div class="weui-cell__bd">
+                    <span style="vertical-align: middle">交货地址</span>
+               
+                </div>
+                <div class="weui-cell__ft">
+                   {$record.place}
+                </div>
+      </div>
+       <div class="weui-cell weui-cell_access">
+                <div class="weui-cell__bd">
+                    <span style="vertical-align: middle">发起时间</span>
+     
+                </div>
+                <div class="weui-cell__ft">
+                   {$record.time}
+                </div>
+      </div>
+    <div class="weui-cells__title">接件人信息</div>
+   <div class="weui-cell weui-cell_access">
+                <div class="weui-cell__bd">
+                    <span style="vertical-align: middle">姓名</span>
+                   
+                </div>
+                <div class="weui-cell__ft">
+                   {$user.name}
+                </div>
+      </div>
+      <div class="weui-cell weui-cell_access">
+                <div class="weui-cell__bd">
+                    <span style="vertical-align: middle">电话</span>
+                   
+                </div>
+                <div class="weui-cell__ft">
+                   {$user.phone}
+                </div>
+      </div>
+      
+      <if condition="$record.state eq 3">
+                  <a href="javascript:;" id='confirm' class="weui-btn weui-btn_primary">确认收到</a>
+      </if>
+     
+    </div>
+
+   
+
+
+<div class="js_dialog" id="iosDialog1" style="display: none">
+        <div class="weui-mask"></div>
+        <div class="weui-dialog">
+            <div class="weui-dialog__hd"><strong class="weui-dialog__title">提示</strong></div>
+            <div class="weui-dialog__bd">确认收到了快递？</div>
+            <div class="weui-dialog__ft">
+                <a href="javascript:;" class="weui-dialog__btn weui-dialog__btn_default">取消</a>
+                <a href="javascript:;" id="conbtn1" class="weui-dialog__btn weui-dialog__btn_primary">确认</a>
+            </div>
+        </div>
+    </div>
+
+    <div class="js_dialog" id="iosDialog2" style="display: none">
+        <div class="weui-mask"></div>
+        <div class="weui-dialog">
+            <div class="weui-dialog__hd"><strong class="weui-dialog__title">提示</strong></div>
+            <div class="weui-dialog__bd">确认支付了代领费{$record.money}元？</div>
+            <img src="/Public/Home/img/erweima/{$record.openid}.jpg" style="width: 150px" alt="">
+            <div class="weui-dialog__ft">
+                <a href="javascript:;" class="weui-dialog__btn weui-dialog__btn_default">取消</a>
+                <a href="javascript:;" id="conbtn2" class="weui-dialog__btn weui-dialog__btn_primary">确认</a>
+            </div>
+        </div>
+    </div>
+
+
+    
+
+</block>
+
+
+<block name="script">
+    <script src="//cdn.bootcss.com/jquery/3.1.1/jquery.min.js"></script>
+    
+    <script src="http://res.wx.qq.com/open/js/jweixin-1.2.0.js" type="text/javascript"></script>
+    <script type="text/javascript">
+
+
+     
+
+      $('#confirm').on('click', function(){
+        $('#iosDialog1').show();
+
+      });
+      $('.weui-dialog__btn_default').on('click', function(){
+        $('#iosDialog1').hide();
+        $('#iosDialog2').hide();
+      });
+      $('#conbtn1').on('click', function(){
+         $('#iosDialog2').show();
+      });
+      $('#conbtn2').on('click', function(){
+        $('#iosDialog2').hide();
+        getpack();
+      });
+
+      var getpack =function(){
+     var pn="/home/trade/getpack/recordid/{$record.recordid}"
+      location.href =pn;
+      }
+
+
+
+            
+
+  
+    </script>
+</block>

@@ -1,0 +1,45 @@
+<extend name="Public:newlayout" />
+
+<block name="content">
+
+  <div class="page__bd" style="margin-bottom: 60px">
+    <div style="text-align: center">只显示最近十单的内容</div>
+      <div>
+            <volist name="onrecords" id="onrecord">
+                <a href="/home/newmenu/view/id/{$onrecord.recordid}" class="weui-media-box weui-media-box_appmsg">
+                    <div class="weui-media-box__hd">
+                        <if condition="$onrecord.recordid%2 eq 0">
+                            <img class="weui-media-box__thumb" src="/Public/Home/img/mytrade/heart-5.png">
+                            <else />
+                            <img class="weui-media-box__thumb" src="/Public/Home/img/mytrade/heart-7.png">
+                        </if>
+                    </div>
+                    <div class="weui-media-box__bd">
+                        <h4 class="weui-media-box__title">{$onrecord.company}</h4>
+                        <h5 lass="weui-media-box__title">{$onrecord.place}</h5>
+                        <p class="weui-media-box__desc">
+                         <if condition="$onrecord.state eq 0">
+                      未接单
+                     
+                   </if>
+                   <if condition="$onrecord.state eq 1">
+                   正在途中
+                   </if>
+                   <if condition="$onrecord.state eq 2">
+                  已完成
+                   </if>
+                    <if condition="$onrecord.state eq 3">
+                  等待您的领取
+                   </if>
+                   
+                        </p>
+                    </div>
+                </a>
+            </volist>
+        </div>
+  </div>
+
+</block>
+
+
+

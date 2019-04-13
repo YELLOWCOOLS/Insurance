@@ -1,0 +1,97 @@
+<extend name="Public:layout" />
+<block name="content">
+  <div class="tpl-content-wrapper">
+    <div class="tpl-content-page-title">
+      智能解析合同文件
+    </div>
+    <ol class="am-breadcrumb">
+      <li><a href="#" class="am-icon-home">首页</a></li>
+      <li><a href="#">上传</a></li>
+    </ol>
+    <div class="tpl-portlet-components">
+      <div class="portlet-title">
+        <div class="caption font-green bold">
+          <span class="am-icon-code"></span> 基本信息填写
+        </div>
+        <!--  <div class="tpl-portlet-input tpl-fz-ml">
+                        <div class="portlet-input input-small input-inline">
+                            <div class="input-icon right">
+                                <i class="am-icon-search"></i>
+                                <input type="text" class="form-control form-control-solid" placeholder="搜索..."> </div>
+                        </div>
+                    </div> -->
+      </div>
+      <div class="tpl-block ">
+        <div class="am-g tpl-amazeui-form">
+          <div class="am-u-sm-12 am-u-md-9">
+            <form action="/admin2/manage/uploadfile" enctype="multipart/form-data" method='post' class="am-form am-form-horizontal">
+              <div class="am-form-group">
+                <label for="user-name" class="am-u-sm-3 am-form-label">合同名称 / Name</label>
+                <div class="am-u-sm-9">
+                  <input type="text" name="ins_name" placeholder="姓名 / Name">
+                  <small>请输入合同全称：如幸福附加康福宝重大疾病保险（C款）</small>
+                </div>
+              </div>
+              <div class="am-form-group">
+                <label for="user-name" class="am-u-sm-3 am-form-label">公司名称 / CpName</label>
+                <div class="am-u-sm-9">
+                  <input type="text" name="cp_name" placeholder="公司名称 / CpName">
+                  <small>请输入公司全称如：北大方正人寿保险有限公司</small>
+                </div>
+              </div>
+              <div class="am-form-group">
+                <label class="am-u-sm-3 am-form-label">合同类型 / type</label>
+                <div class="am-u-sm-9">
+                  <input type="email" id="ins_type" placeholder="重大疾病保险" disabled>
+                  <small>现仅能自动处理重大疾病类型的合同..</small>
+                </div>
+              </div>
+              <div class="am-form-group">
+                <label for="user-intro" class="am-u-sm-3 am-form-label">简介 / Intro</label>
+                <div class="am-u-sm-9">
+                  <textarea class="" rows="5" id="user-intro" placeholder="对于合同的简介"></textarea>
+                  <small>250字以内</small>
+                </div>
+              </div>
+              <div class="am-form-group am-form-file">
+                <div class="am-u-sm-9 am-u-sm-push-3">
+                  <button type="button" class="am-btn am-btn-danger am-btn-sm">
+                    <i class="am-icon-cloud-upload"></i> 选择要上传的文件</button>
+                  <input id="doc-form-file" name="file" type="file">
+                </div>
+                <div class="am-u-sm-9 am-u-sm-push-3">
+                  <small>2M以内的合同TXT文件，如提交PDF文件将无法实时进行处理</small>
+                </div>
+                <div id="file-list"></div>
+              </div>
+              <div class="am-form-group">
+                <div class="am-u-sm-9 am-u-sm-push-3">
+                  <button type="submit" class="am-btn am-btn-primary">提交</button>
+                </div>
+              </div>
+            </form>
+
+       
+
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  </div>
+</block>
+<block name="script">
+  <script src="__PUBLIC__/Admin/assets/js/app.js"></script>
+  <script>
+  $(function() {
+    $('#doc-form-file').on('change', function() {
+      var fileNames = '';
+      $.each(this.files, function() {
+        fileNames += '<span class="am-badge">' + this.name + '</span> ';
+      });
+      $('#file-list').html(fileNames);
+    });
+  });
+
+  </script>
+</block>

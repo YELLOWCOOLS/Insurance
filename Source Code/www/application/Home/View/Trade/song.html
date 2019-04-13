@@ -1,0 +1,87 @@
+<extend name="Public:layout" />
+
+<block name="content">
+		
+    <div class="page_bd">
+    <div class="weui-cells__title">快递信息</div>
+      <div class="weui-cell weui-cell_access">
+                <div class="weui-cell__bd">
+                    <span style="vertical-align: middle">状态</span>
+         
+                </div>
+                <div class="weui-cell__ft">
+                   <if condition="$record.state eq 0">
+                      未接单
+                      <elseif condition="$record.state eq 1"/>
+                      正在途中
+                      <else />
+                      已完成
+                   </if>
+                </div>
+      </div>
+      <div class="weui-cell weui-cell_access">
+                <div class="weui-cell__bd">
+                    <span style="vertical-align: middle">订单号</span>
+                   
+                </div>
+                <div class="weui-cell__ft">
+                   {$record.recordid}
+                </div>
+      </div>
+      <div class="weui-cell weui-cell_access">
+                <div class="weui-cell__bd">
+                    <span style="vertical-align: middle">交货地址</span>
+               
+                </div>
+                <div class="weui-cell__ft">
+                   {$record.place}
+                </div>
+      </div>
+       <div class="weui-cell weui-cell_access">
+                <div class="weui-cell__bd">
+                    <span style="vertical-align: middle">发起时间</span>
+     
+                </div>
+                <div class="weui-cell__ft">
+                   {$record.time}
+                </div>
+      </div>
+      <div class="weui-cell ">
+        <div class="weui-cell__bd" >
+                    <span style="vertical-align: middle">短信截图</span>
+        </div>
+                
+      </div>
+      <div style="text-align:center">
+      <img src="/Public/Home/img/tradeimage/{$record.openid}{$record.time}.jpg" alt="">
+      </div>
+    <div class="weui-cells__title">发起人信息</div>
+
+      <div class="weui-cell weui-cell_access">
+                <div class="weui-cell__bd">
+                    <span style="vertical-align: middle">姓名</span>
+                   
+                </div>
+                <div class="weui-cell__ft">
+                   {$user.username}
+                </div>
+      </div>
+      <div class="weui-cell weui-cell_access">
+                <div class="weui-cell__bd">
+                    <span style="vertical-align: middle">电话</span>
+                   
+                </div>
+                <div class="weui-cell__ft">
+                   {$user.phone}
+                </div>
+      </div>
+    </div>
+</block>
+
+
+<block name="script">
+    <script src="http://res.wx.qq.com/open/js/jweixin-1.2.0.js" type="text/javascript"></script>
+    <script type="text/javascript">
+ 
+    </script>
+</block>
