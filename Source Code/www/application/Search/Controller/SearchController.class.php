@@ -32,12 +32,23 @@ class SearchController extends Controller
         }
         
     }
-    public function get_answer(){
+    public function get_answer2(){
+        $A =A('api');
         $id = I('id');
         $question = I('question');
-        $A =A('api');
+        
         $res = $A->get_answer($question,$id);
+        if($res ==""){
+        $question = I('question');
+        $res = $A->get_answer2($question);
         $this->ajaxReturn($res);
+        }else{
+         $this->ajaxReturn($res);
+        }
+        
+    }
+    public function get_answer(){
+        
     }
     public function illshow($id){
          $illlist=M("illlist")->query("Select * FROM zy_illlist group by illexp having id =".$id);
@@ -173,8 +184,51 @@ order by rand() limit '.$num);
         $this -> assign("tags",$tags);
         $this->display();
     }
+    function random($length=10, $type='string', $convert=0){
+    $config = array(
+        'number'=>'1234567890',
+        'letter'=>'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ',
+        'string'=>'abcdefghjkmnpqrstuvwxyzABCDEFGHJKMNPQRSTUVWXYZ23456789',
+        'all'=>'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890'
+    );
+ 
+    if(!isset($config[$type])) $type = 'string';
+    $string = $config[$type];
+ 
+    $code = '';
+    $strlen = strlen($string) -1;
+    for($i = 0; $i < $length; $i++){
+        $code .= $string{mt_rand(0, $strlen)};
+    }
+    if(!empty($convert)){
+        $code = ($convert > 0)? strtoupper($code) : strtolower($code);
+    }
+    return $code;
+}
     public function insshow($id)
     {   
+        $uid = session('id');
+        if($uid){
+            $data2['user_id'] = $uid;
+            $data2['ins_id'] = $id;
+            $data2['time'] = 0;
+            $data2['is_register'] = 1;
+            M('user_history')->add($data2);
+        }else{
+            $visitor = session('visitor');
+            
+            if(!$visitor){
+                $visitor = $this->random();
+                session('visitor',$visitor);
+            }
+            $data3['user_id'] = $visitor;
+            $data3['ins_id'] = $id;
+            $data3['time'] = 0;
+            $data3['is_register'] = 0;
+            M('user_history')->add($data3);
+            echo($visitor);
+        }
+
         $tag = M('tag')->query("Select tag2 from zy_insurance ins,(
         SELECT
             id,
@@ -199,15 +253,20 @@ order by rand() limit '.$num);
         $this ->assign('tags',$tag);
     	$this->display();
     }
-    public function search($exp = "保险",$page = 0)
+    public function search($exp = "保险",$page = 0,$inscpname="")
     {   
 
         $start =$page*10;
-     
+        
+       
+        $datas = array();
+        if($inscpname!=""){
+        $ins_num = M('insurance')->execute("Select ins.* from zy_insurance ins inner join zy_right tg where name like '%".$exp."%' AND tg.id = ins.id AND ins.cpname ='".$inscpname."'");
+        $ins = M('insurance')->query("select ins.* from zy_insurance ins inner join zy_right tg where  name  like '%".$exp."%' AND ins.id = tg.id AND ins.cpname = '".$inscpname."' limit " .$start.",10 ");
+        }else{
         $ins_num = M('insurance')->execute("Select ins.* from zy_insurance ins inner join zy_right tg where name like '%".$exp."%' AND tg.id = ins.id");
         $ins = M('insurance')->query("select ins.* from zy_insurance ins inner join zy_right tg where  name  like '%".$exp."%' AND ins.id = tg.id limit " .$start.",10 ");
-        $datas = array();
-        
+        }
         foreach ($ins as   $in) {
 
             $data =array();
@@ -233,6 +292,7 @@ order by rand() limit '.$num);
         $this->assign('exp',$exp);
         $this->assign('now_page',$page);
         $this->assign('all_page',floor($ins_num/10));
+        $this->assign('ins',$inscpname);
     	$this->display();
     }
     public function register(){
@@ -251,7 +311,7 @@ order by rand() limit '.$num);
             session("id",$user['user_id']);
             $this->ajaxReturn('ok');
         }
-        
+    
     }
     public function login(){
 

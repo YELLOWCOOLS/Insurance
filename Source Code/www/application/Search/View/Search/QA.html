@@ -1,0 +1,65 @@
+<extend name="Public:layout" />
+<block name="style">
+  <link rel="stylesheet" href="__PUBLIC__/Search/css/qa.css">
+</block>
+<block name="content">
+  <div class='am-container'>
+    <div id="searh_container" class='am-g'>
+      <div class="am-vertical-align-middl am-form-group am-u-lg-6 am-u-sm-centered am-form-icon" id="a_group">
+        <h3>你可以询问关于特定保险的问题，也可以询问保险常识</h1>
+          <middle>以下是您最近的浏览记录，您可以对他们提出问题</middle>
+          <volist name="ins" id='in'>
+            <div class="am-g">
+              <span am-u-sm-6>
+                <a data-ins={$in.id} data-name='{$in.name}' val={$in.name}>{$in.name}</a>
+              </span>
+            </div>
+          </volist>
+          <input type="text" id='dia' class="am-form-field" placeholder="开始对话">
+      </div>
+    </div>
+    <div class='am-g'>
+      <ul class="confirm-list" id="doc-modal-list">
+      </ul>
+    </div>
+  </div>
+</block>
+<block name='script'>
+  <script>
+  $(function() {
+    var id = 10;
+    $("#a_group").on('click', 'a', function() {
+      var name = $(this).data('name');
+      id = $(this).data('ins');
+
+      $html1 = "<li class='question'>我想了解" + name + "</li>";
+      $html2 = "<li class='answer'>好的呢</li>";
+      $('#doc-modal-list').prepend($html1);
+      $('#doc-modal-list').prepend($html2);
+    });
+
+    $('#dia').bind('keydown', function(event) {
+      if (event.keyCode == "13") {
+        $.ajax({
+          url: '/search/search/get_answer2',
+          type: 'post',
+          data: {
+            'id': id,
+            'question': $('#dia').val()
+          },
+          dataType: "json",
+          success: function(data) {
+            if (data) {
+              $html1 = "<li class='question'>" + $('#dia').val() + "</li>";
+              $html2 = "<li class='answer'>"+data+"</li>";
+              $('#doc-modal-list').prepend($html1);
+              $('#doc-modal-list').prepend($html2);
+            }
+          }
+        });
+      }
+    });
+  });
+
+  </script>
+</block>
