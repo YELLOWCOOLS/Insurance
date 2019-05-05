@@ -127,7 +127,7 @@
     $('#dia').bind('keydown', function(event) {
       if (event.keyCode == "13") {
         $.ajax({
-          url: '/search/search/get_answer',
+          url: '/search/search/get_answer2',
           type: 'post',
           data: {
             'id': id,

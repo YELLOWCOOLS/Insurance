@@ -106,8 +106,8 @@
               保险品牌：
             </span>
             <div class='high_text am-u-md-8 '>
-              <select data-am-selected="{maxHeight: 500}">
-                <option value=""></option>
+              <select id ="chose" data-am-selected="{maxHeight: 500}">
+                <option  value="<?php echo ($ins); ?>"><?php echo ($ins); ?></option>
                 <?php if(is_array($cpname)): $i = 0; $__LIST__ = $cpname;if( count($__LIST__)==0 ) : echo "" ;else: foreach($__LIST__ as $key=>$cp): $mod = ($i % 2 );++$i;?><option value="<?php echo ($cp["cpname"]); ?>"><?php echo ($cp["cpname"]); ?></option><?php endforeach; endif; else: echo "" ;endif; ?>
               </select>
             </div>
@@ -124,25 +124,29 @@
                     <span class="title"><?php echo ($data["insurance"]["name"]); ?></span>
                   </div>
                   <div class='am-g tag_container'>
-                    <div class='am-u-md-3'>
-                      保障<?php echo ((isset($data["ill_count"]["numill "]) && ($data["ill_count"]["numill "] !== ""))?($data["ill_count"]["numill "]): 40); ?>种疾病
+                    <div class='am-u-md-6'>
+                      <ul id="">
+                        <li>
+                          保障<?php echo ((isset($data["ill_count"]["numill "]) && ($data["ill_count"]["numill "] !== ""))?($data["ill_count"]["numill "]): 40); ?>种疾病
+                        </li>
+                        <li>
+                          <?php echo ($data["right"]["tag1"]); ?>
+                        </li>
+                        <li>
+                          <?php echo ($data["right"]["tag2"]); ?>
+                        </li>
+                        <li>
+                          <?php echo ($data["right"]["tag3"]); ?>
+                        </li>
+                      </ul>
                     </div>
-                    <div class='am-u-md-3'>
-                      <?php echo ($data["right"]["tag1"]); ?>
+                    <div class='am-u-md-6'>
+                      <div class="right_container">
+                        <?php if(is_array($data["tag"])): $i = 0; $__LIST__ = $data["tag"];if( count($__LIST__)==0 ) : echo "" ;else: foreach($__LIST__ as $key=>$tag): $mod = ($i % 2 );++$i;?><div class="am-g">
+                            <?php echo ($tag["tag2"]); ?>
+                          </div><?php endforeach; endif; else: echo "" ;endif; ?>
+                      </div>
                     </div>
-                    <div class='am-u-md-3'>
-                      <?php echo ($data["right"]["tag2"]); ?>
-                    </div>
-                    <div class='am-u-md-3'>
-                      <?php echo ($data["right"]["tag3"]); ?>
-                    </div>
-                  </div>
-                  <div class="right_container">
-                    <?php if(is_array($data["tag"])): $i = 0; $__LIST__ = $data["tag"];if( count($__LIST__)==0 ) : echo "" ;else: foreach($__LIST__ as $key=>$tag): $mod = ($i % 2 );++$i;?><div class="am-g">
-                        <div class="am-u-md-4">
-                          <?php echo ($tag["tag2"]); ?>
-                        </div>
-                      </div><?php endforeach; endif; else: echo "" ;endif; ?>
                   </div>
                 </div>
                 <div class="am-u-md-4 container-right">
@@ -156,7 +160,7 @@
                     评论：1000
                   </div> -->
                   <div class="am-g first_btn">
-                    <button type="button" class="am-btn am-btn-primary am-round" data-detail="<?php echo ($data["id"]); ?>">查看详情</button>
+                    <button type="button" class="am-btn am-btn-primary am-round btn-detail" data-detail="<?php echo ($data["id"]); ?>" >查看详情</button>
                   </div>
                   <div class="am-g last_btn">
                     <button type="button" class="am-btn am-btn-secondary am-round">加入对比</button>
@@ -168,17 +172,17 @@
       </div>
     </div>
     <ul class="am-pagination am-pagination-centered">
-      <?php if($now_page != 0): ?><li><a href="/search/search/search/exp/<?php echo ($exp); ?>/page/0">&laquo;</a></li>
+      <?php if($now_page != 0): ?><li><a href="/search/search/search/exp/<?php echo ($exp); ?>/page/0/inscpname/<?php echo ($ins); ?>">&laquo;</a></li>
         <?php else: ?>
-        <li class='am-disabled'><a href="/search/search/search/exp/<?php echo ($exp); ?>/page/0">&laquo;</a></li><?php endif; ?>
-      <?php if($now_page >= 2): ?><li><a href="/search/search/search/exp/<?php echo ($exp); ?>/page/<?php echo ($now_page-1); ?>"><?php echo ($now_page-2); ?></a></li><?php endif; ?>
-      <?php if($now_page >= 1): ?><li><a href="/search/search/search/exp/<?php echo ($exp); ?>/page/<?php echo ($now_page-1); ?>"><?php echo ($now_page-1); ?></a></li><?php endif; ?>
+        <li class='am-disabled'><a href="/search/search/search/exp/<?php echo ($exp); ?>/page/0/inscpname/<?php echo ($ins); ?>">&laquo;</a></li><?php endif; ?>
+      <?php if($now_page >= 2): ?><li><a href="/search/search/search/exp/<?php echo ($exp); ?>/page/<?php echo ($now_page-1); ?>/inscpname/<?php echo ($ins); ?>"><?php echo ($now_page-2); ?></a></li><?php endif; ?>
+      <?php if($now_page >= 1): ?><li><a href="/search/search/search/exp/<?php echo ($exp); ?>/page/<?php echo ($now_page-1); ?>/inscpname/<?php echo ($ins); ?>"><?php echo ($now_page-1); ?></a></li><?php endif; ?>
       <li class="am-active"><a href="#"><?php echo ($now_page); ?></a></li>
-      <?php if($now_page <= ($all_page-1)): ?><li><a href="/search/search/search/exp/<?php echo ($exp); ?>/page/<?php echo ($now_page+1); ?>"><?php echo ($now_page+1); ?></a></li><?php endif; ?>
-      <?php if($now_page <= ($all_page-2)): ?><li><a href="/search/search/search/exp/<?php echo ($exp); ?>/page/<?php echo ($now_page+2); ?>"><?php echo ($now_page+2); ?></a></li><?php endif; ?>
-      <?php if($now_page != $all_page): ?><li><a href="/search/search/search/exp/<?php echo ($exp); ?>/page/<?php echo ($all_page); ?>">&raquo;</a></li>
+      <?php if($now_page <= ($all_page-1)): ?><li><a href="/search/search/search/exp/<?php echo ($exp); ?>/page/<?php echo ($now_page+1); ?>/inscpname/<?php echo ($ins); ?>"><?php echo ($now_page+1); ?></a></li><?php endif; ?>
+      <?php if($now_page <= ($all_page-2)): ?><li><a href="/search/search/search/exp/<?php echo ($exp); ?>/page/<?php echo ($now_page+2); ?>/inscpname/<?php echo ($ins); ?>"><?php echo ($now_page+2); ?></a></li><?php endif; ?>
+      <?php if($now_page != $all_page): ?><li><a href="/search/search/search/exp/<?php echo ($exp); ?>/page/<?php echo ($all_page); ?>/inscpname/<?php echo ($ins); ?>">&raquo;</a></li>
         <?php else: ?>
-        <li class='am-disabled'><a href="/search/search/search/exp/<?php echo ($exp); ?>/page/<?php echo ($all_page); ?>">&raquo;</a></li><?php endif; ?>
+        <li class='am-disabled'><a href="/search/search/search/exp/<?php echo ($exp); ?>/page/<?php echo ($all_page); ?>/inscpname/<?php echo ($ins); ?>">&raquo;</a></li><?php endif; ?>
     </ul>
   </div>
   </div>
@@ -191,14 +195,20 @@
   <script src="/Public/Admin/vendor/jquery/dist/jquery.js"></script>
   <script src="/Public/Search/css/amui/assets/js/amazeui.js"></script>
   
-<script>
-$(function() {
-$('.ins_detail').on('click', '[data-detail]', function() {
+  <script>
+  $(function() {
+    $('.ins_detail').on('click', '[data-detail]', function() {
       var dateId = $(this).data('detail');
-     window.location.href="/search/search/insshow/id/"+dateId;
+      window.location.href = "/search/search/insshow/id/" + dateId;
     });
-})
-</script>
+    $('select[data-am-selected]').change(function(){
+      var ins = $("#chose option:selected").val();
+      alert(ins);
+      window.location.href = "/search/search/search/exp/<?php echo ($exp); ?>/inscpname/"+ins;
+    });
+  })
+
+  </script>
 
   <script>
   $(function() {
