@@ -1,4 +1,30 @@
 #!/usr/bin/env python
+#!/usr/bin/env python
+# -*- coding: utf-8 -*-
+#===============================================================================
+#
+# Copyright (c) 2012-2015 Michael Nielsen
+# Copyright (c) 2017 Hai Liang Wang<hailiang.hl.wang@gmail.com> All Rights Reserved
+#
+#
+# File: /Users/hain/ai/InsuranceQA-Machine-Learning/deep_qa_1/network.py
+# Author: Hai Liang Wang
+# Date: 2017-08-08:18:32:05
+#
+#===============================================================================
+
+"""
+   A Simple Network to learning QA.
+
+
+"""
+
+from __future__ import print_function
+from __future__ import division
+import copy as cp
+import json
+import jieba
+
 import os
 import sys
 
