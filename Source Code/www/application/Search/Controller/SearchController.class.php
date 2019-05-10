@@ -4,8 +4,30 @@ namespace Search\Controller;
 use Think\Controller;
 
 class SearchController extends Controller
-{   public function fulluser_detail(){
+{   public function new_qa(){
+        $this->display();
+    }
+    public function get_answer5($que){
+        $A = A('api');
+        
+    }
+    public function get_answer4($que){
+        $A =A('api');
+        // echo($que);
+        $res = $A->get_answer4($que);
+        
+        $entity = $A->get_entity_api_return($que);
+       
+        $entity =  $A ->get_entity_return($entity[0]);
+        // dump($res);
+        $res = json_decode($res,true);
+      
+        $data["answ"]  =$res["answer"];
+          // echo($res["answer"]);
+        $data["entity"] = $entity;
 
+        // dump($data);
+        $this->ajaxReturn($data);
     }
     public function qa(){
         $id =session('id');

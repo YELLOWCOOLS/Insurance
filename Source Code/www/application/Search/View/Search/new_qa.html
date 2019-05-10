@@ -1,0 +1,215 @@
+<extend name="Public:layout" />
+<block name="style">
+  <link rel="stylesheet" href="__PUBLIC__/Search/css/register.css">
+  <link rel="stylesheet" type="text/css" href="__PUBLIC__/Search/css/normalize.css" />
+  <link rel="stylesheet" type="text/css" href="__PUBLIC__/Search/css/font-awesome.min.css" />
+  <link rel="stylesheet" type="text/css" href="__PUBLIC__/Search/css/demo.css" />
+  <link rel="stylesheet" type="text/css" href="__PUBLIC__/Search/css/component.css" />
+</block>
+<block name="content">
+  <div id="page">
+    <section id="home" class="video-hero" style=" background-image: url('__PUBLIC__/search/img/qa_banner.jpg') ;  background-size:cover;
+                 background-position: center center;
+                 background-attachment:fixed;">
+      <div class="am-container">
+        <div class="am-g" style="height:250px; 
+                vertical-align: middle;
+                text-align: center; font-size: 50px">
+          <h1 style="padding-top: 150px">中文QA</h1>
+        </div>
+        <div class="am-g">
+          <div class="am-slider am-slider-default" id="demo-slider-0" style="text-align: center">
+            <ul class="am-slides">
+              <li>上海财经大学在哪里</li>
+              <li>周杰伦的妻子是谁</li>
+              <li>神奇动物在哪里的导演是谁<li>
+              <li>安徽的省会在哪里<li>
+            </ul>
+          </div>
+        </div>
+        <div class="am-g" style="text-align: center">
+          <span class="input input--madoka">
+            <input class="input__field input__field--madoka" type="text" id="input-32" placeholder="你的问题">
+            <label class="input__label input__label--madoka" for="input-32">
+              <svg class="graphic graphic--madoka" width="100%" height="100%" viewBox="0 0 404 77" preserveAspectRatio="none">
+                <path d="m0,0l404,0l0,77l-404,0l0,-77z"></path>
+              </svg>
+           
+            </label>
+          </span>
+        </div>
+        <div id="qa_ba" class="am-g" style="visibility:  hidden;height:100%;min-height: 630px">
+          <div class="am-container" style="width: 80%">
+            <div class="ques">
+              <h1>
+                问题
+              </h1>
+              <span id="ques">
+                赵一的女朋友是谁
+              </span>
+            </div>
+            <div class="answer">
+              <h1>
+                答案
+              </h1>
+              <span id="answer">
+                没有女朋友
+              </span>
+            </div>
+            <div class="entity">
+              <h1>
+                图谱
+              </h1>
+              <span id="entity">
+              </span>
+            </div>
+            <div id="chart" style="  height: 400px"></div>
+          </div>
+        </div>
+      </div>
+      
+    </section>
+  </div>
+</block>
+<block name="script">
+  <script src="__PUBLIC__/search/js/echarts.min.js"></script>
+  <script>
+  // require.config({
+  //       paths: {
+  //            echarts: 'http://echarts.baidu.com/build/dist'
+  //       }
+  //   });
+
+
+  $('#demo-slider-0').flexslider({
+    controlNav: false,
+    directionNav: false,
+    startAt: 0,
+    slideshow: true,
+  });
+
+
+
+  var nodes = [];
+  var relations = [];
+  var $inp = $('#input-32'); //所有的input元素
+  $inp.keypress(function(e) {
+    var key = e.which;
+    var val = $inp.val();
+
+    if (key == 13) {
+
+      $.ajax({
+        url: 'http://localhost:1111/search/search/get_answer4/que/' + val,
+        type: 'get',
+        async: true,
+        dataType: 'JSON',
+        success: function(data) {
+          $("#ques").text(val);
+          $("#answer").text(data['answ']);
+          // $("#entity").text(data['entity']);
+          $("#qa_ba").css({
+            visibility: ''
+          });;
+
+          alert(data);
+          var data_enti = data['entity']
+          // data_enti = data_enti.substr(0, data_enti.length - 1);
+          data_enti = JSON.parse(data_enti);
+          var ret = (data_enti['ret']);
+
+          var node = { category: 0, name: 0, value: 0, label: '实体' };
+          for (var i = 0; i < ret.length; i++) {
+            node = { category: 1, name: ret[i][1], value: i + 1 };
+            nodes.push(node);
+          }
+          var relation = {};
+          for (var i = 0; i < ret.length; i++) {
+            relation = { source: 0, target: i + 1, value: ret[i][0] };
+            relations.push(relation);
+          }
+
+          // $.each(data['entity']['ret'], function(i, item) {
+          //   node = { category: 0, name: i, value: 2, label: item[1] };
+          //   nodes.add(node);
+          // })
+          // var relation = {};
+          // $.each(data['entity']['ret'], function(i, item) {
+          //   relation = { source: 0, target: i, value: 3, label: item[0] };
+          //   relations.add(relation);
+          // });
+
+          var webkitDep = {};
+          webkitDep["nodes"] = nodes;
+          webkitDep["links"] = relations;
+
+          var myChart = echarts.init(document.getElementById("chart"));
+
+          var option = {
+            series: [{
+              type: 'graph',
+              layout: 'force',
+              force: {
+                repulsion: 120, //节点之间的斥力因子。120
+                gravity: 0.01, //节点受到的向中心的引力因子。该值越大节点越往中心点靠拢  0.01
+                edgeLength: 100, //边的两个节点之间的距离，这个距离也会受 repulsion。 100
+              },
+              roam: true,
+              draggable: true,
+              symbol: 'circle',
+              symbolSize: 30,
+              edgeSymbol: ['circle', 'arrow'],
+              edgeSymbolSize: [1, 1],
+              animation: true,
+              lineStyle: {
+                            normal: {
+                                color: '#ABABAB',     //线的颜色
+                                width: 1,            //线宽
+                                type: 'solid',      //线的类型
+                                //shadowBlur:15,     //图形阴影的模糊大小
+                                //shadowColor:'#ffb400',  //阴影颜色
+                                //shadowOffsetX:4,         //阴影水平方向上的偏移距离
+                                //shadowOffsetY:5,         //阴影垂直方向上的偏移距离。
+                                //opacity:1,              //图形透明度。支持从 0 到 1 的数字，为 0 时不绘制该图形。
+                            }
+                        },
+
+               label: {
+                            normal: {
+                                show: true,         //是否显示标签
+                                position: 'right',   //标签的位置
+                                //distance:5,         //距离图形元素的距离
+                                color: '#333333',       //文字的颜色
+                                fontSize: 12,        //文字的字体大小
+                                // backgroundColor:'#d2d2d2',  //文字块背景色,可以使用自定义图片
+                                //width:100,          //文字块的宽度
+                                //height:50,          //文字块的高度
+                            },
+                            emphasis: {
+                                show: false         //是否显示标签
+                            }
+                        },
+              
+              data: webkitDep.nodes.map(function(node, idx) { //node数据
+                node.id = idx;
+                return node;
+              }),
+              edges: webkitDep.links //link数据
+            }]
+          };
+          myChart.setOption(option);
+
+
+
+
+
+        }
+
+      });
+
+    }
+  });
+
+  </script>
+  <script src="__PUBLIC__/Search/js/classie.js"></script>
+</block>
